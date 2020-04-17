@@ -3,7 +3,7 @@
   "scripts": {
     "android": "expo start --android",
     "eject": "expo eject",
-    "format": "prettier --write './**/*.{js,json,jsx,md,ts,tsx,yml}'",
+    "format": "prettier --write './**/*.{js,json,jsx,md,ts,tsx}'",
     "ios": "expo start --ios",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "start": "expo start",
