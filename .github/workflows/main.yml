@@ -6,9 +6,9 @@ name: CI
 # events but only for the master branch
 on:
   push:
-    branches: [ master, develop ]
+    branches: [master]
   pull_request:
-    branches: [ master, develop ]
+    branches: [master]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,23 +19,23 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Setup Node.js environment
-      uses: actions/setup-node@v1.4.1
-      with:
-        # Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0
-        node-version: 12.16.2 # optional, default is 10.x
-        
-    - name: Install Yarn 1.22.4
-      run: npm install yarn@1.22.4 --global
-    
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v1.4.1
+        with:
+          # Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0
+          node-version: 12.16.2 # optional, default is 10.x
 
-    - name: Compile
-      run: yarn tsc
-      
-    - name: Format
-      run: yarn format
-      
-    - name: Lint
-      run: yarn lint
+      - name: Install Yarn 1.22.4
+        run: npm install yarn@1.22.4 --global
+
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Compile
+        run: yarn tsc
+
+      - name: Format
+        run: yarn format
+
+      - name: Lint
+        run: yarn lint
