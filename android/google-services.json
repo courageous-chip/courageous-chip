@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1084775926070",
+    "firebase_url": "https://nik-macintosh.firebaseio.com",
+    "project_id": "nik-macintosh",
+    "storage_bucket": "nik-macintosh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084775926070:android:f027783b394db2a4038b97",
+        "android_client_info": {
+          "package_name": "com.nikmacintosh.nikmacintosh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1084775926070-irfirdolqclr016e45l5di1c1r16li22.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVe0IXR8XYmC74iJPl1Vy_20nX1eqs83w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1084775926070-irfirdolqclr016e45l5di1c1r16li22.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

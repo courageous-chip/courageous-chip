@@ -15,8 +15,28 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
+    "android": {
+      "googleServicesFile": "./android/google-services.json",
+      "package": "com.nikmacintosh.nikmacintosh"
+    },
     "ios": {
+      "bundleIdentifier": "com.nikmacintosh.NikMacintosh",
+      "googleServicesFile": "./ios/GoogleService-Info.plist",
       "supportsTablet": true
+    },
+    "web": {
+      "config": {
+        "firebase": {
+          "apiKey": "AIzaSyDgN7WH8ZObdJQ4Zi544B3QD8KREkEg7H4",
+          "appId": "1:1084775926070:web:2f7ffdb0f565d951038b97",
+          "authDomain": "nik-macintosh.firebaseapp.com",
+          "databaseURL": "https://nik-macintosh.firebaseio.com",
+          "measurementId": "G-W5398F4879",
+          "messagingSenderId": "1084775926070",
+          "projectId": "nik-macintosh",
+          "storageBucket": "nik-macintosh.appspot.com"
+        }
+      }
     }
   }
 }
