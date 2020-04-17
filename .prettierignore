@@ -1,0 +1,10 @@
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/tasks.json
+.history/
+.jest/
+.vscode/*
+.yarn/
+*.code-workspace
+node_modules/
