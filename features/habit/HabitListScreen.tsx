@@ -1,19 +1,39 @@
+import "firebase/firestore";
 import React, { FC } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList, FlatListProps, StyleSheet, Text, View } from "react-native";
+
+import { Loading } from "../ui/Loading";
+import { Habit, useHabits } from "./useHabits";
 
 export const HabitListScreen: FC = function () {
-  return (
+  const [habits, loading] = useHabits();
+
+  const keyExtractor: FlatListProps<Habit>["keyExtractor"] = function ({ id }) {
+    return id;
+  };
+
+  const renderItem: FlatListProps<Habit>["renderItem"] = function ({
+    item: { name },
+  }) {
+    return <Text>{name}</Text>;
+  };
+
+  return loading ? (
+    <Loading />
+  ) : (
     <View style={styles.container}>
-      <Text>List habits</Text>
+      <FlatList
+        data={habits}
+        keyExtractor={keyExtractor}
+        renderItem={renderItem}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
     backgroundColor: "#fff",
     flex: 1,
-    justifyContent: "center",
   },
 });
