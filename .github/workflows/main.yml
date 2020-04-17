@@ -38,7 +38,7 @@ jobs:
         run: yarn tsc
 
       - name: Format
-        run: yarn format
+        run: yarn format --check
 
       - name: Lint
         run: yarn lint
