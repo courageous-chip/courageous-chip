@@ -8,18 +8,6 @@ import { Exercise, useExercises } from "./useExercises";
 export const ExerciseListScreen: FC = function () {
   const [exercises, loading] = useExercises();
 
-  const keyExtractor: FlatListProps<Exercise>["keyExtractor"] = function ({
-    id,
-  }) {
-    return id;
-  };
-
-  const renderItem: FlatListProps<Exercise>["renderItem"] = function ({
-    item: { name },
-  }) {
-    return <Text>{name}</Text>;
-  };
-
   return loading ? (
     <Loading />
   ) : (
@@ -31,6 +19,18 @@ export const ExerciseListScreen: FC = function () {
       />
     </View>
   );
+};
+
+const keyExtractor: FlatListProps<Exercise>["keyExtractor"] = function ({
+  id,
+}) {
+  return id;
+};
+
+const renderItem: FlatListProps<Exercise>["renderItem"] = function ({
+  item: { name },
+}) {
+  return <Text>{name}</Text>;
 };
 
 const styles = StyleSheet.create({
