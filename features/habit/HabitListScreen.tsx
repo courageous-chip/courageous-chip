@@ -1,14 +1,37 @@
-import React, { FC } from "react";
-import { FlatList, FlatListProps, StyleSheet, Text, View } from "react-native";
+import { ParamListBase } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import React, { FC, useLayoutEffect } from "react";
+import {
+  Button,
+  ButtonProps,
+  FlatList,
+  FlatListProps,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
-import { Loading } from "../ui/Loading";
+import { LoadingIndicator } from "../../shared/ui/components/LoadingIndicator";
 import { Habit, useHabits } from "./useHabits";
 
-export const HabitListScreen: FC = function () {
-  const [habits, loading] = useHabits();
+type Props = { navigation: StackNavigationProp<ParamListBase, "HabitList"> };
+
+export const HabitListScreen: FC<Props> = ({ navigation }) => {
+  const onNew: ButtonProps["onPress"] = () =>
+    navigation.navigate("HabitFormStack");
+
+  useLayoutEffect(
+    () =>
+      navigation.setOptions({
+        headerRight: () => <Button onPress={onNew} title="New" />,
+      }),
+    [navigation],
+  );
+
+  const { loading, habits } = useHabits();
 
   return loading ? (
-    <Loading />
+    <LoadingIndicator />
   ) : (
     <View style={styles.container}>
       <FlatList
@@ -20,15 +43,11 @@ export const HabitListScreen: FC = function () {
   );
 };
 
-const keyExtractor: FlatListProps<Habit>["keyExtractor"] = function ({ id }) {
-  return id;
-};
+const keyExtractor: FlatListProps<Habit>["keyExtractor"] = ({ id }) => id;
 
-const renderItem: FlatListProps<Habit>["renderItem"] = function ({
-  item: { name },
-}) {
-  return <Text>{name}</Text>;
-};
+const renderItem: FlatListProps<Habit>["renderItem"] = ({ item: { name } }) => (
+  <Text>{name}</Text>
+);
 
 const styles = StyleSheet.create({
   container: {

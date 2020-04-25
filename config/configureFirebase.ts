@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import "firebase/firestore";
 
-export function configureFirebase() {
+export const configureFirebase = () =>
   firebase.initializeApp({
     apiKey: "AIzaSyDZ8Q9baAkcG6DhGt_SGlad4zpmBIo9NQ8",
     appId: "1:429857278278:web:9686d21abbc062ac957d47",
@@ -11,4 +11,3 @@ export function configureFirebase() {
     projectId: "nik-macintosh-783f9",
     storageBucket: "nik-macintosh-783f9.appspot.com",
   });
-}

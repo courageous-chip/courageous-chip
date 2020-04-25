@@ -1,22 +1,15 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
+import { enableScreens } from "react-native-screens";
 
 import { configureFirebase } from "./config/configureFirebase";
-import { ExerciseStackScreen } from "./features/exercise/ExerciseStackScreen";
-import { HabitStackScreen } from "./features/habit/HabitStackScreen";
+import { ModalStackScreen } from "./shared/ui/screens/ModalStackScreen";
 
 configureFirebase();
+enableScreens();
 
-const Tab = createBottomTabNavigator();
-
-export default function App() {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen component={ExerciseStackScreen} name="Exercise" />
-        <Tab.Screen component={HabitStackScreen} name="Habit" />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-}
+export default () => (
+  <NavigationContainer>
+    <ModalStackScreen />
+  </NavigationContainer>
+);

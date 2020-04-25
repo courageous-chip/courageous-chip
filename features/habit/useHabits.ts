@@ -6,28 +6,31 @@ export interface Habit {
   name: string;
 }
 
-export function useHabits() {
+export const useHabits = () => {
   const [habits, setHabits] = useState<readonly Habit[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(function () {
-    firebase
-      .firestore()
-      .collection("habits")
-      .onSnapshot(function (snapshots) {
-        const habits: Habit[] = [];
-
-        snapshots.forEach(function (snapshot) {
+  useEffect(() => {
+    const fetchHabits = async () => {
+      try {
+        const snapshots = await firebase.firestore().collection("habits").get();
+        const habits = snapshots.docs.map<Habit>((snapshot) => {
           const id = snapshot.id;
-          const name = snapshot.data().name;
+          const name = snapshot.get("name");
 
-          habits.push({ id, name });
+          return { id, name };
         });
 
         setHabits(habits);
+      } catch (error) {
+        console.error(error);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchHabits();
   }, []);
 
-  return [habits, loading] as const;
-}
+  return { loading, habits };
+};

@@ -1,15 +1,14 @@
-import "firebase/firestore";
 import React, { FC } from "react";
 import { FlatList, FlatListProps, StyleSheet, Text, View } from "react-native";
 
-import { Loading } from "../ui/Loading";
+import { LoadingIndicator } from "../../shared/ui/components/LoadingIndicator";
 import { Exercise, useExercises } from "./useExercises";
 
-export const ExerciseListScreen: FC = function () {
-  const [exercises, loading] = useExercises();
+export const ExerciseListScreen: FC = () => {
+  const { exercises, loading } = useExercises();
 
   return loading ? (
-    <Loading />
+    <LoadingIndicator />
   ) : (
     <View style={styles.container}>
       <FlatList
@@ -21,17 +20,11 @@ export const ExerciseListScreen: FC = function () {
   );
 };
 
-const keyExtractor: FlatListProps<Exercise>["keyExtractor"] = function ({
-  id,
-}) {
-  return id;
-};
+const keyExtractor: FlatListProps<Exercise>["keyExtractor"] = ({ id }) => id;
 
-const renderItem: FlatListProps<Exercise>["renderItem"] = function ({
+const renderItem: FlatListProps<Exercise>["renderItem"] = ({
   item: { name },
-}) {
-  return <Text>{name}</Text>;
-};
+}) => <Text>{name}</Text>;
 
 const styles = StyleSheet.create({
   container: {

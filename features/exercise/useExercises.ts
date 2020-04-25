@@ -6,28 +6,34 @@ export interface Exercise {
   name: string;
 }
 
-export function useExercises() {
+export const useExercises = () => {
   const [exercises, setExercises] = useState<readonly Exercise[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(function () {
-    firebase
-      .firestore()
-      .collection("exercises")
-      .onSnapshot(function (snapshots) {
-        const exercises: Exercise[] = [];
-
-        snapshots.forEach(function (snapshot) {
+  useEffect(() => {
+    const fetchExercises = async () => {
+      try {
+        const snapshots = await firebase
+          .firestore()
+          .collection("exercises")
+          .get();
+        const exercises = snapshots.docs.map<Exercise>((snapshot) => {
           const id = snapshot.id;
-          const name = snapshot.data().name;
+          const name = snapshot.get("name");
 
-          exercises.push({ id, name });
+          return { id, name };
         });
 
         setExercises(exercises);
+      } catch (error) {
+        console.error(error);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchExercises();
   }, []);
 
-  return [exercises, loading] as const;
-}
+  return { exercises, loading };
+};

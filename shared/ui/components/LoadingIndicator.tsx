@@ -1,13 +1,11 @@
 import React, { FC } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
 
-export const Loading: FC = function () {
-  return (
-    <View style={styles.container}>
-      <ActivityIndicator />
-    </View>
-  );
-};
+export const LoadingIndicator: FC = () => (
+  <View style={styles.container}>
+    <ActivityIndicator />
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
