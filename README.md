@@ -4,6 +4,10 @@
 
 ![CI](https://github.com/knickmack/courageous-chip/workflows/CI/badge.svg)
 
+## Community
+
+[Slack Workspace](courageouschip.slack.com)
+
 ## Getting Started
 
 ### Installing
