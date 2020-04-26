@@ -42,3 +42,13 @@ jobs:
 
       - name: Lint
         run: yarn lint
+      
+      - name: Test
+        run: yarn test --coverage
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          name: code-coverage-report
+          path: coverage
+

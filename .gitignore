@@ -12,3 +12,8 @@ web-report/
 
 # macOS
 .DS_Store
+
+# Jest
+#
+# https://docs.expo.io/guides/testing-with-jest/#code-coverage-reports
+coverage/**/*
