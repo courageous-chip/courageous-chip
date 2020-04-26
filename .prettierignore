@@ -7,4 +7,5 @@
 .vscode/*
 .yarn/
 *.code-workspace
+coverage/
 node_modules/
