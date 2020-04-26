@@ -1,10 +1,33 @@
-import React, { FC } from "react";
-import { FlatList, FlatListProps, StyleSheet, Text, View } from "react-native";
+import { ParamListBase } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import React, { FC, useLayoutEffect } from "react";
+import {
+  Button,
+  ButtonProps,
+  FlatList,
+  FlatListProps,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 import { LoadingIndicator } from "../../shared/ui/components/LoadingIndicator";
 import { Exercise, useExercises } from "./useExercises";
 
-export const ExerciseListScreen: FC = () => {
+type Props = { navigation: StackNavigationProp<ParamListBase, "ExerciseList"> };
+
+export const ExerciseListScreen: FC<Props> = ({ navigation }) => {
+  const onNew: ButtonProps["onPress"] = () =>
+    navigation.navigate("ExerciseFormStack");
+
+  useLayoutEffect(
+    () =>
+      navigation.setOptions({
+        headerRight: () => <Button onPress={onNew} title="New" />,
+      }),
+    [navigation],
+  );
+
   const { exercises, loading } = useExercises();
 
   return loading ? (
