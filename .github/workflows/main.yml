@@ -35,7 +35,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Compile
-        run: yarn tsc
+        run: yarn compile
 
       - name: Format
         run: yarn format --check
