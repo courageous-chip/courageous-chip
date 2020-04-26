@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Nik Macintosh",
-    "slug": "nik-macintosh",
+    "name": "Courageous Chip",
+    "slug": "courageous-chip",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
