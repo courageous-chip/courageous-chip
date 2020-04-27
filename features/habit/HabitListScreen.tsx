@@ -7,10 +7,10 @@ import {
   FlatList,
   FlatListProps,
   StyleSheet,
-  Text,
   View,
 } from "react-native";
 
+import { ListItem } from "../../shared/ui/components/ListItem";
 import { LoadingIndicator } from "../../shared/ui/components/LoadingIndicator";
 import { Habit, useHabits } from "./useHabits";
 
@@ -30,9 +30,21 @@ export const HabitListScreen: FC<Props> = ({ navigation }) => {
 
   const { loading, habits } = useHabits();
 
-  return loading ? (
-    <LoadingIndicator />
-  ) : (
+  if (loading) {
+    return <LoadingIndicator />;
+  }
+
+  const renderItem: FlatListProps<Habit>["renderItem"] = ({
+    item: { id, name },
+  }) => (
+    <ListItem
+      id={id}
+      onPress={() => navigation.navigate("HabitDetail", { id })}
+      text={name}
+    />
+  );
+
+  return (
     <View style={styles.container}>
       <FlatList
         data={habits}
@@ -44,10 +56,6 @@ export const HabitListScreen: FC<Props> = ({ navigation }) => {
 };
 
 const keyExtractor: FlatListProps<Habit>["keyExtractor"] = ({ id }) => id;
-
-const renderItem: FlatListProps<Habit>["renderItem"] = ({ item: { name } }) => (
-  <Text>{name}</Text>
-);
 
 const styles = StyleSheet.create({
   container: {

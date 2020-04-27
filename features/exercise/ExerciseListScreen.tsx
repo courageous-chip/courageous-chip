@@ -7,10 +7,10 @@ import {
   FlatList,
   FlatListProps,
   StyleSheet,
-  Text,
   View,
 } from "react-native";
 
+import { ListItem } from "../../shared/ui/components/ListItem";
 import { LoadingIndicator } from "../../shared/ui/components/LoadingIndicator";
 import { Exercise, useExercises } from "./useExercises";
 
@@ -30,9 +30,21 @@ export const ExerciseListScreen: FC<Props> = ({ navigation }) => {
 
   const { exercises, loading } = useExercises();
 
-  return loading ? (
-    <LoadingIndicator />
-  ) : (
+  if (loading) {
+    return <LoadingIndicator />;
+  }
+
+  const renderItem: FlatListProps<Exercise>["renderItem"] = ({
+    item: { id, name },
+  }) => (
+    <ListItem
+      id={id}
+      onPress={() => navigation.navigate("ExerciseDetail", { id })}
+      text={name}
+    />
+  );
+
+  return (
     <View style={styles.container}>
       <FlatList
         data={exercises}
@@ -44,10 +56,6 @@ export const ExerciseListScreen: FC<Props> = ({ navigation }) => {
 };
 
 const keyExtractor: FlatListProps<Exercise>["keyExtractor"] = ({ id }) => id;
-
-const renderItem: FlatListProps<Exercise>["renderItem"] = ({
-  item: { name },
-}) => <Text>{name}</Text>;
 
 const styles = StyleSheet.create({
   container: {
