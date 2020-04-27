@@ -1,10 +1,19 @@
+import { StackNavigationProp } from "@react-navigation/stack";
+import i18n from "i18n-js";
 import React, { FC } from "react";
 import { FlatList, FlatListProps, StyleSheet, Text, View } from "react-native";
 
 import { Loading } from "../ui/Loading";
+import { HabitStackParamList, ScreenName } from "./HabitStackScreen";
 import { Habit, useHabits } from "./useHabits";
 
-export const HabitListScreen: FC = function () {
+type Props = {
+  navigation: StackNavigationProp<HabitStackParamList, ScreenName.HabitList>;
+};
+
+export const HabitListScreen: FC<Props> = function ({ navigation }) {
+  navigation.setOptions({ title: i18n.t("habit.list.title") });
+
   const [habits, loading] = useHabits();
 
   return loading ? (
