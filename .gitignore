@@ -17,3 +17,9 @@ web-report/
 #
 # https://docs.expo.io/guides/testing-with-jest/#code-coverage-reports
 coverage/**/*
+
+# react-native-dotenv
+#
+# https://github.com/zetachang/react-native-dotenv
+.env*
+!.env.template
