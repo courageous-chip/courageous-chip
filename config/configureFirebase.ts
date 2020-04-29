@@ -1,14 +1,23 @@
 import firebase from "firebase";
 import "firebase/firestore";
+import {
+  FIREBASE_API_KEY,
+  FIREBASE_APP_ID,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_DATABASE_URL,
+  FIREBASE_MESSAGING_SENDER_ID,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGE_BUCKET,
+} from "react-native-dotenv";
 
 export function configureFirebase() {
   firebase.initializeApp({
-    apiKey: "AIzaSyDZ8Q9baAkcG6DhGt_SGlad4zpmBIo9NQ8",
-    appId: "1:429857278278:web:9686d21abbc062ac957d47",
-    authDomain: "nik-macintosh-783f9.firebaseapp.com",
-    databaseURL: "https://nik-macintosh-783f9.firebaseio.com",
-    messagingSenderId: "429857278278",
-    projectId: "nik-macintosh-783f9",
-    storageBucket: "nik-macintosh-783f9.appspot.com",
+    apiKey: FIREBASE_API_KEY,
+    appId: FIREBASE_APP_ID,
+    authDomain: FIREBASE_AUTH_DOMAIN,
+    databaseURL: FIREBASE_DATABASE_URL,
+    messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+    projectId: FIREBASE_PROJECT_ID,
+    storageBucket: FIREBASE_STORAGE_BUCKET,
   });
 }

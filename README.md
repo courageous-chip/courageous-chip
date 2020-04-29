@@ -16,6 +16,15 @@
 $ yarn install
 ```
 
+### Environment
+
+Run the following script to render `.env`, based on `.env.template`, where you
+can specify your own Firebase credentials.
+
+```shell
+$ yarn render-env
+```
+
 ### Starting
 
 ```shell
