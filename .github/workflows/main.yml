@@ -44,7 +44,7 @@ jobs:
         run: yarn lint
 
       - name: Test
-        run: yarn test --coverage
+        run: yarn test --ci --coverage
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v1.0.0
