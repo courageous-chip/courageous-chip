@@ -1,4 +1,3 @@
-import "firebase/firestore";
 import React, { FC } from "react";
 import { FlatList, FlatListProps, StyleSheet, Text, View } from "react-native";
 
