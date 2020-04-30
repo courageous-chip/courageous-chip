@@ -44,13 +44,7 @@ jobs:
         run: yarn lint
 
       - name: Test
-        run: yarn test --coverage
-
-      - name: Codecov
-        uses: codecov/codecov-action@v1.0.6
-        with:
-          file: coverage/clover.xml
-          token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        run: yarn test --ci --coverage
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v1.0.0
