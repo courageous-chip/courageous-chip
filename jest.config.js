@@ -7,11 +7,13 @@ module.exports = {
   // https://docs.expo.io/guides/testing-with-jest/#code-coverage-reports
   collectCoverageFrom: [
     "!**/.eslintrc.js",
+    "!**/@types/**",
     "!**/babel.config.js",
     "!**/coverage/**",
     "!**/jest.config.js",
     "!**/node_modules/**",
     "!**/prettier.config.js",
+    "!**/scripts/**",
     "**/*.{js,jsx,ts,tsx}",
   ],
   // "A Jest preset that mocks out the native side of the Expo SDK and handles
