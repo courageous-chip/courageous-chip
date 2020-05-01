@@ -1,10 +1,10 @@
+.history/
+.jest/
+.vscode/*
 !.vscode/extensions.json
 !.vscode/launch.json
 !.vscode/settings.json
 !.vscode/tasks.json
-.history/
-.jest/
-.vscode/*
 .yarn/
 *.code-workspace
 coverage/
