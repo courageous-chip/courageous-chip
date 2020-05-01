@@ -35,7 +35,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Write .env
-        run: node --unhandled-rejections=strict ./scripts/write-dotenv.js 
+        run: yarn ts-node-script scripts/write-dotenv.ts
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
