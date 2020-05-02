@@ -9,7 +9,7 @@ import {
   Text,
   View,
 } from "react-native";
-import * as Sentry from "sentry-expo";
+import { captureException } from "sentry-expo";
 
 import { Loading } from "../ui/Loading";
 import { Exercise, useExercises } from "./useExercises";
@@ -21,7 +21,7 @@ export const ExerciseListScreen: FC<Props> = function ({ navigation }) {
     headerRight: () => (
       <Button
         onPress={() => {
-          Sentry.captureException(
+          captureException(
             new Error(`Testing Sentry in Development: ${Date.now()}`),
           );
         }}

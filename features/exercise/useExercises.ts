@@ -1,5 +1,6 @@
 import firebase from "firebase";
 import { useEffect, useState } from "react";
+import { captureException } from "sentry-expo";
 
 export interface Exercise {
   id: string;
@@ -11,22 +12,26 @@ export function useExercises() {
   const [loading, setLoading] = useState(true);
 
   useEffect(function () {
-    firebase
-      .firestore()
-      .collection("exercises")
-      .onSnapshot(function (snapshots) {
-        const exercises: Exercise[] = [];
-
-        snapshots.forEach(function (snapshot) {
-          const id = snapshot.id;
-          const name = snapshot.data().name;
-
-          exercises.push({ id, name });
-        });
+    async function fetchExercises() {
+      try {
+        const snapshots = await firebase
+          .firestore()
+          .collection("exercises")
+          .get();
+        const exercises = snapshots.docs.map<Exercise>((snapshot) => ({
+          id: snapshot.id,
+          name: snapshot.data().name,
+        }));
 
         setExercises(exercises);
+      } catch (error) {
+        captureException(error);
+      } finally {
         setLoading(false);
-      });
+      }
+    }
+
+    fetchExercises();
   }, []);
 
   return [exercises, loading] as const;
