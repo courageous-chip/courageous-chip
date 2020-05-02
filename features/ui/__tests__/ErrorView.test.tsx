@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import { Loading } from "../Loading";
+import { ErrorView } from "../ErrorView";
 
-describe("<Loading />", () => {
+describe("<ErrorView />", () => {
   it("renders correctly", () => {
-    const tree = renderer.create(<Loading />).toJSON();
+    const tree = renderer.create(<ErrorView />).toJSON();
 
     expect(tree).toMatchSnapshot();
   });

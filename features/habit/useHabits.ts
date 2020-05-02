@@ -8,8 +8,9 @@ export interface Habit {
 }
 
 export function useHabits() {
-  const [habits, setHabits] = useState<readonly Habit[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Readonly<Error> | null>();
+  const [habits, setHabits] = useState<readonly Habit[] | null>();
+  const [loading, setLoading] = useState<Readonly<boolean>>(true);
 
   useEffect(function () {
     async function fetchHabits() {
@@ -20,9 +21,13 @@ export function useHabits() {
           name: snapshot.data().name,
         }));
 
+        setError(null);
         setHabits(habits);
       } catch (error) {
         captureException(error);
+
+        setError(error);
+        setHabits(null);
       } finally {
         setLoading(false);
       }
@@ -31,5 +36,5 @@ export function useHabits() {
     fetchHabits();
   }, []);
 
-  return [habits, loading] as const;
+  return { error, habits, loading };
 }
