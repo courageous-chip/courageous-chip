@@ -9,7 +9,15 @@ npm-debug.*
 *.orig.*
 web-build/
 web-report/
-*.vscode
+
+# VSCode
+# https://github.com/github/gitignore/blob/master/Global/VisualStudioCode.gitignore
+#
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 # macOS
 .DS_Store
