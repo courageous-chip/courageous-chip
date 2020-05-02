@@ -1,11 +1,17 @@
 {
   "expo": {
-    "name": "Courageous Chip",
-    "slug": "courageous-chip",
-    "platforms": ["ios", "android", "web"],
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "assetBundlePatterns": ["**/*"],
+    "hooks": {
+      "postPublish": [{ "file": "sentry-expo/upload-sourcemaps" }]
+    },
     "icon": "./assets/icon.png",
+    "ios": {
+      "supportsTablet": true
+    },
+    "name": "Courageous Chip",
+    "orientation": "portrait",
+    "platforms": ["ios", "android", "web"],
+    "slug": "courageous-chip",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -14,9 +20,6 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
-    "ios": {
-      "supportsTablet": true
-    }
+    "version": "1.0.0"
   }
 }
