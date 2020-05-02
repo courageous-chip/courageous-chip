@@ -26,7 +26,23 @@ const firebaseAppOptions = Object.freeze([
   FirebaseAppOption.StorageBucket,
 ]);
 
-const mapFirebaseAppOptionToDotenvKeyValue = (option: FirebaseAppOption) => {
+const enum SentryOption {
+  AuthenticationToken = "SENTRY_AUTH_TOKEN",
+  DataSourceName = "SENTRY_DSN",
+  Organization = "SENTRY_ORG",
+  Project = "SENTRY_PROJECT",
+}
+
+const sentryOptions = Object.freeze([
+  SentryOption.AuthenticationToken,
+  SentryOption.DataSourceName,
+  SentryOption.Organization,
+  SentryOption.Project,
+]);
+
+type Option = FirebaseAppOption | SentryOption;
+
+const mapOptionToDotenvKeyValue = (option: Option) => {
   const value = process.env[option];
 
   if (!value) {
@@ -37,8 +53,8 @@ const mapFirebaseAppOptionToDotenvKeyValue = (option: FirebaseAppOption) => {
 };
 
 function getDotenvBody() {
-  return firebaseAppOptions
-    .map(mapFirebaseAppOptionToDotenvKeyValue)
+  return [...firebaseAppOptions, ...sentryOptions]
+    .map(mapOptionToDotenvKeyValue)
     .join("\n");
 }
 

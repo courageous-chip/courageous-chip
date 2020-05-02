@@ -1,10 +1,35 @@
+import { ParamListBase } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import React, { FC } from "react";
-import { FlatList, FlatListProps, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  FlatListProps,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import * as Sentry from "sentry-expo";
 
 import { Loading } from "../ui/Loading";
 import { Exercise, useExercises } from "./useExercises";
 
-export const ExerciseListScreen: FC = function () {
+type Props = { navigation: StackNavigationProp<ParamListBase> };
+
+export const ExerciseListScreen: FC<Props> = function ({ navigation }) {
+  navigation.setOptions({
+    headerRight: () => (
+      <Button
+        onPress={() => {
+          Sentry.captureException(
+            new Error(`Testing Sentry in Development: ${Date.now()}`),
+          );
+        }}
+        title="Sentry"
+      />
+    ),
+  });
+
   const [exercises, loading] = useExercises();
 
   return loading ? (
