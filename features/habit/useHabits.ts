@@ -1,5 +1,6 @@
 import firebase from "firebase";
 import { useEffect, useState } from "react";
+import { captureException } from "sentry-expo";
 
 export interface Habit {
   id: string;
@@ -11,22 +12,23 @@ export function useHabits() {
   const [loading, setLoading] = useState(true);
 
   useEffect(function () {
-    firebase
-      .firestore()
-      .collection("habits")
-      .onSnapshot(function (snapshots) {
-        const habits: Habit[] = [];
-
-        snapshots.forEach(function (snapshot) {
-          const id = snapshot.id;
-          const name = snapshot.data().name;
-
-          habits.push({ id, name });
-        });
+    async function fetchHabits() {
+      try {
+        const snapshots = await firebase.firestore().collection("habits").get();
+        const habits = snapshots.docs.map<Habit>((snapshot) => ({
+          id: snapshot.id,
+          name: snapshot.data().name,
+        }));
 
         setHabits(habits);
+      } catch (error) {
+        captureException(error);
+      } finally {
         setLoading(false);
-      });
+      }
+    }
+
+    fetchHabits();
   }, []);
 
   return [habits, loading] as const;
