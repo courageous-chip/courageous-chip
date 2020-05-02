@@ -1,24 +1,30 @@
+import { useQuery, gql } from "@apollo/client";
 import React, { FC } from "react";
-import { FlatList, FlatListProps, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 
+import {
+  keyExtractor,
+  renderItem,
+  HABIT_LIST_ITEM_FIELDS_FRAGMENT,
+} from "../habit/HabitListItem";
 import { EmptyView } from "../ui/EmptyView";
 import { ErrorView } from "../ui/ErrorView";
 import { LoadingView } from "../ui/LoadingView";
-import { Habit, useHabits } from "./useHabits";
+import { GetHabits } from "./__generated__/GetHabits";
 
 export const HabitListScreen: FC = function () {
-  const { error, habits, loading } = useHabits();
+  const { data, error, loading } = useQuery<GetHabits>(GET_HABITS_QUERY);
 
   return loading ? (
     <LoadingView />
   ) : error ? (
     <ErrorView />
-  ) : !habits?.length ? (
+  ) : !data?.habits.length ? (
     <EmptyView />
   ) : (
     <View style={styles.container}>
       <FlatList
-        data={habits}
+        data={data.habits}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
       />
@@ -26,15 +32,15 @@ export const HabitListScreen: FC = function () {
   );
 };
 
-const keyExtractor: FlatListProps<Habit>["keyExtractor"] = function ({ id }) {
-  return id;
-};
+const GET_HABITS_QUERY = gql`
+  query GetHabits {
+    habits {
+      ...HabitListItemFields
+    }
+  }
 
-const renderItem: FlatListProps<Habit>["renderItem"] = function ({
-  item: { name },
-}) {
-  return <Text>{name}</Text>;
-};
+  ${HABIT_LIST_ITEM_FIELDS_FRAGMENT}
+`;
 
 const styles = StyleSheet.create({
   container: {
