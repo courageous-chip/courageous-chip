@@ -5,7 +5,7 @@
     "apollo:client:codegen": "rm -rf **/__generated__ && apollo client:codegen --localSchemaFile data/schema.graphql --target typescript --tsFileExtension d.ts --useReadOnlyTypes",
     "compile": "tsc",
     "eject": "expo eject",
-    "format": "prettier --write './**/*.{js,json,jsx,md,ts,tsx,yml}'",
+    "format": "prettier './**/*.{js,json,jsx,md,ts,tsx,yml}'",
     "graphql:write:schema": "rm -f data/schema.graphql && ts-node-script scripts/write-graphql-schema.ts",
     "ios": "expo start --ios",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
