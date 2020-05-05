@@ -2,9 +2,11 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "android": "expo start --android",
+    "apollo:client:codegen": "rm -rf **/__generated__ && apollo client:codegen --localSchemaFile data/schema.graphql --target typescript --tsFileExtension d.ts --useReadOnlyTypes",
     "compile": "tsc",
     "eject": "expo eject",
     "format": "prettier --write './**/*.{js,json,jsx,md,ts,tsx,yml}'",
+    "graphql:write:schema": "rm -f data/schema.graphql && ts-node-script scripts/write-graphql-schema.ts",
     "ios": "expo start --ios",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "render-env": "cp .env.template .env",
@@ -13,12 +15,17 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@apollo/client": "^3.0.0-beta.44",
+    "@apollo/link-error": "^2.0.0-beta.3",
+    "@apollo/link-schema": "^2.0.0-beta.3",
     "@react-native-community/masked-view": "0.1.6",
     "@react-navigation/bottom-tabs": "^5.2.6",
     "@react-navigation/native": "^5.1.5",
     "@react-navigation/stack": "^5.2.10",
     "expo": "~37.0.3",
     "firebase": "7.9.0",
+    "graphql": "^14.6.0",
+    "graphql-tools": "^5.0.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-37.0.1.tar.gz",
@@ -33,14 +40,18 @@
     "@babel/core": "^7.8.6",
     "@types/jest": "^25.2.1",
     "@types/node": "^13.13.4",
+    "@types/prettier": "^2.0.0",
     "@types/react": "~16.9.23",
     "@types/react-native": "~0.61.17",
     "@types/react-test-renderer": "^16.9.2",
     "@typescript-eslint/eslint-plugin": "^2.29.0",
     "@typescript-eslint/parser": "^2.28.0",
+    "apollo": "^2.27.3",
+    "babel-plugin-graphql-tag": "^2.5.0",
     "babel-preset-expo": "~8.1.0",
     "eslint": "^6.8.0",
     "eslint-config-universe": "^3.0.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
     "jest-expo": "^37.0.0",
     "prettier": "2.0.4",
     "react-native-dotenv": "^0.2.0",
@@ -48,5 +59,8 @@
     "ts-node": "^8.9.1",
     "typescript": "~3.8.3"
   },
-  "private": true
+  "private": true,
+  "resolutions": {
+    "graphql": "^14.6.0"
+  }
 }

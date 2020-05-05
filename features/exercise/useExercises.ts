@@ -8,8 +8,9 @@ export interface Exercise {
 }
 
 export function useExercises() {
-  const [exercises, setExercises] = useState<readonly Exercise[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Readonly<Error> | null>();
+  const [exercises, setExercises] = useState<readonly Exercise[] | null>();
+  const [loading, setLoading] = useState<Readonly<boolean>>(true);
 
   useEffect(function () {
     async function fetchExercises() {
@@ -23,9 +24,13 @@ export function useExercises() {
           name: snapshot.data().name,
         }));
 
+        setError(null);
         setExercises(exercises);
       } catch (error) {
         captureException(error);
+
+        setError(error);
+        setExercises(null);
       } finally {
         setLoading(false);
       }
@@ -34,5 +39,5 @@ export function useExercises() {
     fetchExercises();
   }, []);
 
-  return [exercises, loading] as const;
+  return { error, exercises, loading };
 }

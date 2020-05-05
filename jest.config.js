@@ -6,6 +6,7 @@ module.exports = {
   //
   // https://docs.expo.io/guides/testing-with-jest/#code-coverage-reports
   collectCoverageFrom: [
+    "!**/__generated__/**",
     "!**/.eslintrc.js",
     "!**/@types/**",
     "!**/babel.config.js",

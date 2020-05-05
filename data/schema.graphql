@@ -1,0 +1,14 @@
+type Exercise {
+  id: ID!
+  name: String!
+}
+
+type Habit {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  exercises: [Exercise!]!
+  habits: [Habit!]!
+}

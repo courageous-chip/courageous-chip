@@ -1,43 +1,30 @@
-import { ParamListBase } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+import { gql, useQuery } from "@apollo/client";
 import React, { FC } from "react";
+import { FlatList, StyleSheet, View } from "react-native";
+
+import { EmptyView } from "../ui/EmptyView";
+import { ErrorView } from "../ui/ErrorView";
+import { LoadingView } from "../ui/LoadingView";
 import {
-  Button,
-  FlatList,
-  FlatListProps,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { captureException } from "sentry-expo";
+  keyExtractor,
+  renderItem,
+  EXERCISE_LIST_ITEM_FIELDS_FRAGMENT,
+} from "./ExerciseListItem";
+import { GetExercises } from "./__generated__/GetExercises";
 
-import { Loading } from "../ui/Loading";
-import { Exercise, useExercises } from "./useExercises";
-
-type Props = { navigation: StackNavigationProp<ParamListBase> };
-
-export const ExerciseListScreen: FC<Props> = function ({ navigation }) {
-  navigation.setOptions({
-    headerRight: () => (
-      <Button
-        onPress={() => {
-          captureException(
-            new Error(`Testing Sentry in Development: ${Date.now()}`),
-          );
-        }}
-        title="Sentry"
-      />
-    ),
-  });
-
-  const [exercises, loading] = useExercises();
+export const ExerciseListScreen: FC = function () {
+  const { data, error, loading } = useQuery<GetExercises>(GET_EXERCISES_QUERY);
 
   return loading ? (
-    <Loading />
+    <LoadingView />
+  ) : error ? (
+    <ErrorView />
+  ) : !data?.exercises.length ? (
+    <EmptyView />
   ) : (
     <View style={styles.container}>
       <FlatList
-        data={exercises}
+        data={data.exercises}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
       />
@@ -45,17 +32,15 @@ export const ExerciseListScreen: FC<Props> = function ({ navigation }) {
   );
 };
 
-const keyExtractor: FlatListProps<Exercise>["keyExtractor"] = function ({
-  id,
-}) {
-  return id;
-};
+const GET_EXERCISES_QUERY = gql`
+  query GetExercises {
+    exercises {
+      ...ExerciseListItemFields
+    }
+  }
 
-const renderItem: FlatListProps<Exercise>["renderItem"] = function ({
-  item: { name },
-}) {
-  return <Text>{name}</Text>;
-};
+  ${EXERCISE_LIST_ITEM_FIELDS_FRAGMENT}
+`;
 
 const styles = StyleSheet.create({
   container: {
