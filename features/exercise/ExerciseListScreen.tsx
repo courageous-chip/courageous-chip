@@ -11,7 +11,9 @@ import {
 } from "react-native";
 import { captureException } from "sentry-expo";
 
-import { Loading } from "../ui/Loading";
+import { EmptyView } from "../ui/EmptyView";
+import { ErrorView } from "../ui/ErrorView";
+import { LoadingView } from "../ui/LoadingView";
 import { Exercise, useExercises } from "./useExercises";
 
 type Props = { navigation: StackNavigationProp<ParamListBase> };
@@ -30,10 +32,14 @@ export const ExerciseListScreen: FC<Props> = function ({ navigation }) {
     ),
   });
 
-  const [exercises, loading] = useExercises();
+  const { error, exercises, loading } = useExercises();
 
   return loading ? (
-    <Loading />
+    <LoadingView />
+  ) : error ? (
+    <ErrorView />
+  ) : !exercises?.length ? (
+    <EmptyView />
   ) : (
     <View style={styles.container}>
       <FlatList

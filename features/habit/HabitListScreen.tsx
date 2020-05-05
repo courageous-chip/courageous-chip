@@ -1,14 +1,20 @@
 import React, { FC } from "react";
 import { FlatList, FlatListProps, StyleSheet, Text, View } from "react-native";
 
-import { Loading } from "../ui/Loading";
+import { EmptyView } from "../ui/EmptyView";
+import { ErrorView } from "../ui/ErrorView";
+import { LoadingView } from "../ui/LoadingView";
 import { Habit, useHabits } from "./useHabits";
 
 export const HabitListScreen: FC = function () {
-  const [habits, loading] = useHabits();
+  const { error, habits, loading } = useHabits();
 
   return loading ? (
-    <Loading />
+    <LoadingView />
+  ) : error ? (
+    <ErrorView />
+  ) : !habits?.length ? (
+    <EmptyView />
   ) : (
     <View style={styles.container}>
       <FlatList

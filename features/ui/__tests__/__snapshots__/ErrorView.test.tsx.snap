@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Loading /> renders correctly 1`] = `
+exports[`<ErrorView /> renders correctly 1`] = `
 <View
   style={
     Object {
@@ -11,11 +11,14 @@ exports[`<Loading /> renders correctly 1`] = `
     }
   }
 >
-  <ActivityIndicator
-    animating={true}
-    color="#999999"
-    hidesWhenStopped={true}
-    size="small"
-  />
+  <Text
+    style={
+      Object {
+        "fontSize": 72,
+      }
+    }
+  >
+    💩
+  </Text>
 </View>
 `;
