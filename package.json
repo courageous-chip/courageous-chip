@@ -6,7 +6,7 @@
     "compile": "tsc",
     "eject": "expo eject",
     "format": "prettier './**/*.{js,json,jsx,md,ts,tsx,yml}'",
-    "graphql:write:schema": "rm -f data/schema.graphql && ts-node-script scripts/write-graphql-schema.ts",
+    "graphql:schema:write": "rm -f data/schema.graphql && ts-node-script scripts/write-graphql-schema.ts",
     "ios": "expo start --ios",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "render-env": "cp .env.template .env",

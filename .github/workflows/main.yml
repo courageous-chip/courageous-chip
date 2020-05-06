@@ -69,7 +69,7 @@ jobs:
 
       - name: Verify GraphQL Schema
         run: |
-          yarn graphql:write:schema
+          yarn graphql:schema:write
           git diff --exit-code
 
       - name: Verify Apollo Tooling Generated Files
