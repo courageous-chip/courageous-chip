@@ -74,5 +74,5 @@ jobs:
 
       - name: Verify Apollo Tooling Generated Files
         run: |
-          yarn apollo:client:codegen
+          yarn apollo:codegen:write
           git diff --exit-code
