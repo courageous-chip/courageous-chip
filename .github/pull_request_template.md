@@ -1,17 +1,16 @@
-## Proposed changes
+## ⚠️ This pull request is blocked by
 
-Describe the big picture of your changes here to communicate to the maintainers why we should accept this pull request. If it fixes a bug or resolves a feature request, be sure to link to that issue.
+## 👊 What are the proposed changes?
 
-## Type of change
+What are the changes you are making to the codebase? A bug fix, a feature added, UI or infrastructure changes.
 
-Please _delete_ options that are not relevant.
+## 🤔 Why have you made this changes?
 
-- [ ] Bug fix (change which fixes an issue).
-- [ ] New feature (change which adds functionality).
+Describe the changes you have made and why it is valuable to the codebase.
 
-## How Has This Been Tested?
+## 🧪 How Has This Been Tested?
 
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration.
+Provide instructions for your tests that are reproducible.
 
 - [ ] Test A
 - [ ] Test B
