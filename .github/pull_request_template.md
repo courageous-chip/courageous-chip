@@ -1,16 +1,23 @@
-## ⚠️ This pull request is blocked by
+## :warning: Is this blocked?
 
-## 👊 What are the proposed changes?
+- Blocked by \#
 
-What are the changes you are making to the codebase? A bug fix, a feature added, UI or infrastructure changes.
+## :fist_oncoming: What are the proposed changes?
 
-## 🤔 Why have you made this changes?
+- What are the changes you are making to the codebase?
 
-Describe the changes you have made and why it is valuable to the codebase.
+## :thinking: Why are you proposing these changes?
 
-## 🧪 How Has This Been Tested?
+- Why have you proposed these changes to the codebase?
 
-Provide instructions for your tests that are reproducible.
+## :woman_scientist: How has this been tested?
+
+1. Provide reproducible instructions for your tests
+2. ...
 
 - [ ] Test A
 - [ ] Test B
+
+### :octocat: Issue
+
+- Closes \#
