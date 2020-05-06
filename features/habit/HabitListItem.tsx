@@ -26,5 +26,5 @@ export const renderItem: VirtualizedListProps<
 type Props = Pick<HabitListItemFields, "name">;
 
 export const HabitListItem: FC<Props> = function ({ name }) {
-  return <Text>{name}</Text>;
+  return <Text testID="habitItemTestID">{name}</Text>;
 };
