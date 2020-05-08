@@ -1,6 +1,6 @@
 # Courageous Chip
 
-### Hello
+### Hello, Linh!
 
 ## Build Status
 
