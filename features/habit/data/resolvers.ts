@@ -1,5 +1,5 @@
 import { Resolvers } from "@apollo/client";
-import firebase from "firebase";
+import * as firebase from "firebase/app";
 
 import { GetHabits_habits } from "../__generated__/GetHabits";
 
