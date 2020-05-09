@@ -6,7 +6,7 @@ import {
   ExerciseStackBottomTabParamList,
   ExerciseStackBottomTabScreenName,
   ExerciseStackScreen,
-} from "../exercise/ExerciseStackScreen";
+} from "../exercise/stack/ExerciseStackScreen";
 import {
   HabitStackBottomTabParamList,
   HabitStackBottomTabScreenName,

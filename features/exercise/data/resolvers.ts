@@ -1,7 +1,7 @@
 import { Resolvers } from "@apollo/client";
 import * as firebase from "firebase/app";
 
-import { GetExercises_exercises } from "../__generated__/GetExercises";
+import { GetExercises_exercises } from "../list/__generated__/GetExercises";
 
 type Exercise = Omit<GetExercises_exercises, "__typename">;
 

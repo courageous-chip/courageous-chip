@@ -1,11 +1,11 @@
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { FC } from "react";
 
-import { ExerciseList } from "./ExerciseList";
 import {
   ExerciseStackParamList,
   ExerciseStackScreenName,
-} from "./ExerciseStackScreen";
+} from "../stack/ExerciseStackScreen";
+import { ExerciseList } from "./ExerciseList";
 
 type ExerciseListScreenNavigationProp = StackNavigationProp<
   ExerciseStackParamList,

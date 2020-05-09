@@ -2,9 +2,9 @@ import { gql, useQuery } from "@apollo/client";
 import React, { FC } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 
-import { EmptyView } from "../ui/EmptyView";
-import { ErrorView } from "../ui/ErrorView";
-import { LoadingView } from "../ui/LoadingView";
+import { EmptyView } from "../../ui/EmptyView";
+import { ErrorView } from "../../ui/ErrorView";
+import { LoadingView } from "../../ui/LoadingView";
 import {
   keyExtractor,
   renderItem,
