@@ -6,7 +6,7 @@
 
 ## Community
 
-[Slack Workspace](courageouschip.slack.com)
+[Slack Workspace](https://courageouschip.slack.com)
 
 ## Getting Started
 
