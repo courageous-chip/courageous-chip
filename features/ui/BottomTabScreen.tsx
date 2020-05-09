@@ -11,7 +11,7 @@ import {
   HabitStackBottomTabParamList,
   HabitStackBottomTabScreenName,
   HabitStackScreen,
-} from "../habit/HabitStackScreen";
+} from "../habit/stack/HabitStackScreen";
 import { ModalStackParamList, ModalStackScreenName } from "./ModalStackScreen";
 
 type BottomTabScreenNavigationProp = StackNavigationProp<
