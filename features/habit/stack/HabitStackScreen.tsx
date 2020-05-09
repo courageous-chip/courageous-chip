@@ -1,18 +1,9 @@
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { FC } from "react";
 
-import { BottomTabParamList } from "../../ui/BottomTabScreen";
 import { HabitListScreen } from "../list/HabitListScreen";
 
-type HabitStackScreenNavigationProp = BottomTabNavigationProp<
-  BottomTabParamList,
-  HabitStackBottomTabScreenName
->;
-
-type Props = { navigation: HabitStackScreenNavigationProp };
-
-export const HabitStackScreen: FC<Props> = function () {
+export const HabitStackScreen: FC = function () {
   return (
     <HabitStack.Navigator>
       <HabitStack.Screen
