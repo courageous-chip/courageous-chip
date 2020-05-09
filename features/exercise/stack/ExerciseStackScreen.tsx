@@ -1,18 +1,9 @@
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { FC } from "react";
 
-import { BottomTabParamList } from "../ui/BottomTabScreen";
-import { ExerciseListScreen } from "./ExerciseListScreen";
+import { ExerciseListScreen } from "../list/ExerciseListScreen";
 
-type ExerciseStackScreenNavigationProp = BottomTabNavigationProp<
-  BottomTabParamList,
-  ExerciseStackBottomTabScreenName
->;
-
-type Props = { navigation: ExerciseStackScreenNavigationProp };
-
-export const ExerciseStackScreen: FC<Props> = function () {
+export const ExerciseStackScreen: FC = function () {
   return (
     <ExerciseStack.Navigator>
       <ExerciseStack.Screen

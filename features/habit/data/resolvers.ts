@@ -1,7 +1,7 @@
 import { Resolvers } from "@apollo/client";
 import * as firebase from "firebase/app";
 
-import { GetHabits_habits } from "../__generated__/GetHabits";
+import { GetHabits_habits } from "../list/__generated__/GetHabits";
 
 type Habit = Omit<GetHabits_habits, "__typename">;
 

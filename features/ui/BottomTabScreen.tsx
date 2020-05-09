@@ -1,27 +1,18 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { StackNavigationProp } from "@react-navigation/stack";
 import React, { FC } from "react";
 
 import {
   ExerciseStackBottomTabParamList,
   ExerciseStackBottomTabScreenName,
   ExerciseStackScreen,
-} from "../exercise/ExerciseStackScreen";
+} from "../exercise/stack/ExerciseStackScreen";
 import {
   HabitStackBottomTabParamList,
   HabitStackBottomTabScreenName,
   HabitStackScreen,
-} from "../habit/HabitStackScreen";
-import { ModalStackParamList, ModalStackScreenName } from "./ModalStackScreen";
+} from "../habit/stack/HabitStackScreen";
 
-type BottomTabScreenNavigationProp = StackNavigationProp<
-  ModalStackParamList,
-  ModalStackScreenName.BottomTab
->;
-
-type Props = { navigation: BottomTabScreenNavigationProp };
-
-export const BottomTabScreen: FC<Props> = function () {
+export const BottomTabScreen: FC = function () {
   return (
     <Tab.Navigator>
       <Tab.Screen
