@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React, { FC } from "react";
 
 import { BottomTabParamList } from "../../ui/BottomTabScreen";
-import { HabitListScreen } from "../HabitListScreen";
+import { HabitListScreen } from "../list/HabitListScreen";
 
 type HabitStackScreenNavigationProp = BottomTabNavigationProp<
   BottomTabParamList,

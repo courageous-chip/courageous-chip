@@ -1,11 +1,11 @@
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { FC } from "react";
 
-import { HabitList } from "./HabitList";
 import {
   HabitStackParamList,
   HabitStackScreenName,
-} from "./stack/HabitStackScreen";
+} from "../stack/HabitStackScreen";
+import { HabitList } from "./HabitList";
 
 type HabitListScreenNavigationProp = StackNavigationProp<
   HabitStackParamList,

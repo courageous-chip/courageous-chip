@@ -2,14 +2,14 @@ import { useQuery, gql } from "@apollo/client";
 import React, { FC } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 
+import { EmptyView } from "../../ui/EmptyView";
+import { ErrorView } from "../../ui/ErrorView";
+import { LoadingView } from "../../ui/LoadingView";
 import {
   keyExtractor,
   renderItem,
   HABIT_LIST_ITEM_FIELDS_FRAGMENT,
-} from "../habit/HabitListItem";
-import { EmptyView } from "../ui/EmptyView";
-import { ErrorView } from "../ui/ErrorView";
-import { LoadingView } from "../ui/LoadingView";
+} from "./HabitListItem";
 import { GetHabits } from "./__generated__/GetHabits";
 
 export const HabitList: FC = function () {
