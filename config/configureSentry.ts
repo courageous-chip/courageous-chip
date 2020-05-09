@@ -2,7 +2,10 @@ import Constants from "expo-constants";
 import { SENTRY_DSN } from "react-native-dotenv";
 import * as Sentry from "sentry-expo";
 
-export function configureSentry() {
+export function configureSentry(
+  release = Constants.manifest.revisionId,
+  setRelease = Sentry.setRelease,
+) {
   Sentry.init({
     debug: true,
     dsn: SENTRY_DSN,
@@ -16,9 +19,7 @@ export function configureSentry() {
   //
   // https://docs.expo.io/guides/using-sentry/#publish-your-app-with-sourcemaps
 
-  const { revisionId } = Constants.manifest;
-
-  if (revisionId) {
-    Sentry.setRelease(revisionId);
+  if (release) {
+    setRelease(release);
   }
 }
