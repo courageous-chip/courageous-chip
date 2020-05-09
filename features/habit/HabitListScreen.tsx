@@ -1,7 +1,16 @@
+import { StackNavigationProp } from "@react-navigation/stack";
 import React, { FC } from "react";
 
 import { HabitList } from "./HabitList";
+import { HabitStackParamList, HabitStackScreenName } from "./HabitStackScreen";
 
-export const HabitListScreen: FC = function () {
+type HabitListScreenNavigationProp = StackNavigationProp<
+  HabitStackParamList,
+  HabitStackScreenName.HabitList
+>;
+
+type Props = { navigation: HabitListScreenNavigationProp };
+
+export const HabitListScreen: FC<Props> = function () {
   return <HabitList />;
 };
