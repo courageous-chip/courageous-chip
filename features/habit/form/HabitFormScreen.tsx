@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { FC } from "react";
+import { StyleSheet } from "react-native";
 
 import { ModalStackParamList } from "../../ui/ModalStackScreen";
 import { HabitForm } from "./HabitForm";
@@ -12,7 +13,8 @@ export const HabitFormScreen: FC = function () {
 
   navigation.setOptions({
     headerBackImage: () => null,
-    headerBackTitle: "Cancel",
+    headerBackTitleStyle: styles.headerBackTitleStyle,
+    headerBackTitle: "👎",
   });
 
   return <HabitForm />;
@@ -25,3 +27,7 @@ export enum HabitFormModalStackScreenName {
 export type HabitFormModalStackParamList = {
   [HabitFormModalStackScreenName.HabitForm]: { id?: string };
 };
+
+const styles = StyleSheet.create({
+  headerBackTitleStyle: { fontSize: 25, marginLeft: 20 },
+});

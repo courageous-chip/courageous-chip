@@ -1,5 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React, { FC } from "react";
+import { StyleSheet } from "react-native";
 
 import { ExerciseListScreen } from "../list/ExerciseListScreen";
 
@@ -9,6 +10,7 @@ export const ExerciseStackScreen: FC = function () {
       <ExerciseStack.Screen
         component={ExerciseListScreen}
         name={ExerciseStackScreenName.ExerciseList}
+        options={{ headerTitleStyle: styles.headerTitleStyle, title: "🏋️‍♀️" }}
       />
     </ExerciseStack.Navigator>
   );
@@ -31,3 +33,5 @@ export type ExerciseStackParamList = {
 };
 
 const ExerciseStack = createStackNavigator<ExerciseStackParamList>();
+
+const styles = StyleSheet.create({ headerTitleStyle: { fontSize: 25 } });

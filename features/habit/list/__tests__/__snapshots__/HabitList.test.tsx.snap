@@ -136,9 +136,24 @@ exports[`<HabitList /> renders habits 1`] = `
         <View
           style={null}
         >
-          <Text>
-            🦷 Floss Teeth
-          </Text>
+          <View
+            style={
+              Object {
+                "justifyContent": "center",
+                "minHeight": 64,
+              }
+            }
+          >
+            <Text
+              style={
+                Object {
+                  "marginHorizontal": 20,
+                }
+              }
+            >
+              🦷 Floss Teeth
+            </Text>
+          </View>
         </View>
       </ScrollView>
     </View>
