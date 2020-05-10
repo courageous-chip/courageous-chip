@@ -1,7 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ExerciseListItem /> renders correctly 1`] = `
-<Text>
-  🏋️‍♀️ Deadlift
-</Text>
+<View
+  style={
+    Object {
+      "justifyContent": "center",
+      "minHeight": 64,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "marginHorizontal": 20,
+      }
+    }
+  >
+    🏋️‍♀️ Deadlift
+  </Text>
+</View>
 `;

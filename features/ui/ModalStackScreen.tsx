@@ -1,5 +1,9 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  StackNavigationOptions,
+} from "@react-navigation/stack";
 import React, { FC } from "react";
+import { StyleSheet } from "react-native";
 
 import {
   ExerciseFormModalStackParamList,
@@ -19,15 +23,17 @@ export const ModalStackScreen: FC = function () {
       <ModalStack.Screen
         component={BottomTabScreen}
         name={ModalStackScreenName.BottomTab}
-        options={{ headerShown: false }}
+        options={bottomTabScreenOptions}
       />
       <ModalStack.Screen
         component={ExerciseFormScreen}
         name={ExerciseFormModalStackScreenName.ExerciseForm}
+        options={{ headerTitleStyle: styles.headerTitleStyle, title: "🏋️‍♀️" }}
       />
       <ModalStack.Screen
         component={HabitFormScreen}
         name={HabitFormModalStackScreenName.HabitForm}
+        options={{ headerTitleStyle: styles.headerTitleStyle, title: "🗓" }}
       />
     </ModalStack.Navigator>
   );
@@ -43,3 +49,11 @@ export type ModalStackParamList = {
   HabitFormModalStackParamList;
 
 const ModalStack = createStackNavigator<ModalStackParamList>();
+
+const bottomTabScreenOptions: StackNavigationOptions = { headerShown: false };
+
+const styles = StyleSheet.create({
+  headerTitleStyle: {
+    fontSize: 25,
+  },
+});

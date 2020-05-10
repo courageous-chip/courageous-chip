@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { FC } from "react";
-import { Button } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { ModalStackParamList } from "../../ui/ModalStackScreen";
 import { HabitFormModalStackScreenName } from "../form/HabitFormScreen";
@@ -12,14 +12,25 @@ export const HabitListScreen: FC = function () {
 
   navigation.setOptions({
     headerRight: () => (
-      <Button
+      <TouchableOpacity
         onPress={() =>
           navigation.navigate(HabitFormModalStackScreenName.HabitForm)
         }
-        title="🆕"
-      />
+        style={styles.headerRightContainer}
+      >
+        <Text style={styles.headerRightText}>🆕</Text>
+      </TouchableOpacity>
     ),
   });
 
   return <HabitList />;
 };
+
+const styles = StyleSheet.create({
+  headerRightContainer: {
+    marginRight: 20,
+  },
+  headerRightText: {
+    fontSize: 25,
+  },
+});

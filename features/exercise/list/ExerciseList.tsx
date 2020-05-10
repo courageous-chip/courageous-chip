@@ -6,9 +6,10 @@ import { EmptyView } from "../../ui/EmptyView";
 import { ErrorView } from "../../ui/ErrorView";
 import { LoadingView } from "../../ui/LoadingView";
 import {
+  EXERCISE_LIST_ITEM_FIELDS_FRAGMENT,
+  ItemSeparatorComponent,
   keyExtractor,
   renderItem,
-  EXERCISE_LIST_ITEM_FIELDS_FRAGMENT,
 } from "./ExerciseListItem";
 import { GetExercises } from "./__generated__/GetExercises";
 
@@ -25,6 +26,7 @@ export const ExerciseList: FC = function () {
     <View style={styles.container}>
       <FlatList
         data={data.exercises}
+        ItemSeparatorComponent={ItemSeparatorComponent}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
       />

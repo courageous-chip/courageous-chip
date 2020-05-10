@@ -1,6 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { FC } from "react";
+import { StyleSheet } from "react-native";
 
 import { ModalStackParamList } from "../../ui/ModalStackScreen";
 import { ExerciseForm } from "./ExerciseForm";
@@ -12,7 +13,8 @@ export const ExerciseFormScreen: FC = function () {
 
   navigation.setOptions({
     headerBackImage: () => null,
-    headerBackTitle: "Cancel",
+    headerBackTitleStyle: styles.headerBackTitleStyle,
+    headerBackTitle: "👎",
   });
 
   return <ExerciseForm />;
@@ -25,3 +27,7 @@ export enum ExerciseFormModalStackScreenName {
 export type ExerciseFormModalStackParamList = {
   [ExerciseFormModalStackScreenName.ExerciseForm]: { id?: string };
 };
+
+const styles = StyleSheet.create({
+  headerBackTitleStyle: { fontSize: 25, marginLeft: 20 },
+});
