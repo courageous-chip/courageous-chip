@@ -1,32 +1,42 @@
 import { gql, useQuery } from "@apollo/client";
+import { useTheme } from "@react-navigation/native";
 import React, { FC } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 
 import { EmptyView } from "../../ui/EmptyView";
 import { ErrorView } from "../../ui/ErrorView";
 import { LoadingView } from "../../ui/LoadingView";
+import { ThemedItemSeparator } from "../../ui/ThemedItemSeparator";
 import {
   EXERCISE_LIST_ITEM_FIELDS_FRAGMENT,
-  ItemSeparatorComponent,
   keyExtractor,
   renderItem,
 } from "./ExerciseListItem";
 import { GetExercises } from "./__generated__/GetExercises";
 
 export const ExerciseList: FC = function () {
+  const {
+    colors: { background: backgroundColor },
+  } = useTheme();
   const { data, error, loading } = useQuery<GetExercises>(GET_EXERCISES_QUERY);
 
-  return loading ? (
-    <LoadingView />
-  ) : error ? (
-    <ErrorView />
-  ) : !data?.exercises.length ? (
-    <EmptyView />
-  ) : (
-    <View style={styles.container}>
+  if (loading) {
+    return <LoadingView />;
+  }
+
+  if (error) {
+    return <ErrorView />;
+  }
+
+  if (!data?.exercises.length) {
+    return <EmptyView />;
+  }
+
+  return (
+    <View style={[styles.container, { backgroundColor }]}>
       <FlatList
         data={data.exercises}
-        ItemSeparatorComponent={ItemSeparatorComponent}
+        ItemSeparatorComponent={ThemedItemSeparator}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
       />
@@ -46,7 +56,6 @@ export const GET_EXERCISES_QUERY = gql`
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
     flex: 1,
   },
 });

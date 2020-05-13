@@ -1,6 +1,11 @@
 import { ApolloProvider } from "@apollo/client";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from "@react-navigation/native";
 import React from "react";
+import { AppearanceProvider, useColorScheme } from "react-native-appearance";
 
 import { configureFirebase } from "./config/configureFirebase";
 import { configureSentry } from "./config/configureSentry";
@@ -11,11 +16,16 @@ configureFirebase();
 configureSentry();
 
 export default function App() {
+  const scheme = useColorScheme();
+  const theme = scheme === "dark" ? DarkTheme : DefaultTheme;
+
   return (
-    <ApolloProvider client={client}>
-      <NavigationContainer>
-        <ModalStackScreen />
-      </NavigationContainer>
-    </ApolloProvider>
+    <AppearanceProvider>
+      <ApolloProvider client={client}>
+        <NavigationContainer theme={theme}>
+          <ModalStackScreen />
+        </NavigationContainer>
+      </ApolloProvider>
+    </AppearanceProvider>
   );
 }

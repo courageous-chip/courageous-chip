@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { useTheme } from "@react-navigation/native";
 import React, { FC } from "react";
 import { FlatListProps, StyleSheet, Text, View } from "react-native";
 
@@ -10,12 +11,6 @@ export const EXERCISE_LIST_ITEM_FIELDS_FRAGMENT = gql`
     name
   }
 `;
-
-export const ItemSeparatorComponent: FlatListProps<
-  ExerciseListItemFields
->["ItemSeparatorComponent"] = function () {
-  return <View style={styles.itemSeparator} />;
-};
 
 export const keyExtractor: FlatListProps<
   ExerciseListItemFields
@@ -32,15 +27,18 @@ export const renderItem: FlatListProps<
 type Props = Pick<ExerciseListItemFields, "name">;
 
 export const ExerciseListItem: FC<Props> = function ({ name }) {
+  const {
+    colors: { card: backgroundColor, text: color },
+  } = useTheme();
+
   return (
-    <View style={styles.itemContainer}>
-      <Text style={styles.itemText}>{name}</Text>
+    <View style={[styles.itemContainer, { backgroundColor }]}>
+      <Text style={[styles.itemText, { color }]}>{name}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   itemContainer: { justifyContent: "center", minHeight: 64 },
-  itemSeparator: { backgroundColor: "#f7f7f7", height: 1, width: "100%" },
   itemText: { marginHorizontal: 20 },
 });
