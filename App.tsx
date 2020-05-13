@@ -9,11 +9,13 @@ import { StatusBar } from "react-native";
 import { AppearanceProvider, useColorScheme } from "react-native-appearance";
 
 import { configureFirebase } from "./config/configureFirebase";
+import { configureScreens } from "./config/configureScreens";
 import { configureSentry } from "./config/configureSentry";
 import { client } from "./data/client";
 import { ModalStackScreen } from "./features/ui/ModalStackScreen";
 
 configureFirebase();
+configureScreens();
 configureSentry();
 
 export default function App() {
