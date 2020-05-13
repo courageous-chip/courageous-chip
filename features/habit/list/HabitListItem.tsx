@@ -1,4 +1,5 @@
 import { gql } from "@apollo/client";
+import { useTheme } from "@react-navigation/native";
 import React, { FC } from "react";
 import { FlatListProps, StyleSheet, Text, View } from "react-native";
 
@@ -10,12 +11,6 @@ export const HABIT_LIST_ITEM_FIELDS_FRAGMENT = gql`
     name
   }
 `;
-
-export const ItemSeparatorComponent: FlatListProps<
-  HabitListItemFields
->["ItemSeparatorComponent"] = function () {
-  return <View style={styles.itemSeparator} />;
-};
 
 export const keyExtractor: FlatListProps<
   HabitListItemFields
@@ -32,15 +27,19 @@ export const renderItem: FlatListProps<
 type Props = Pick<HabitListItemFields, "name">;
 
 export const HabitListItem: FC<Props> = function ({ name }) {
+  const {
+    colors: { card: backgroundColor, text: color },
+  } = useTheme();
+
   return (
-    <View style={styles.itemContainer}>
-      <Text style={styles.itemText}>{name}</Text>
+    <View style={[styles.itemContainer, { backgroundColor }]}>
+      <Text style={[styles.itemText, { color }]}>{name}</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   itemContainer: { justifyContent: "center", minHeight: 64 },
-  itemSeparator: { backgroundColor: "#f7f7f7", height: 1, width: "100%" },
+  itemSeparator: { height: 1, width: "100%" },
   itemText: { marginHorizontal: 20 },
 });

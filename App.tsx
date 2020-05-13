@@ -1,6 +1,12 @@
 import { ApolloProvider } from "@apollo/client";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from "@react-navigation/native";
 import React from "react";
+import { StatusBar } from "react-native";
+import { AppearanceProvider, useColorScheme } from "react-native-appearance";
 
 import { configureFirebase } from "./config/configureFirebase";
 import { configureSentry } from "./config/configureSentry";
@@ -11,11 +17,19 @@ configureFirebase();
 configureSentry();
 
 export default function App() {
+  const scheme = useColorScheme();
+  const isDarkScheme = scheme === "dark";
+  const theme = isDarkScheme ? DarkTheme : DefaultTheme;
+  const barStyle = isDarkScheme ? "light-content" : "dark-content";
+
   return (
-    <ApolloProvider client={client}>
-      <NavigationContainer>
-        <ModalStackScreen />
-      </NavigationContainer>
-    </ApolloProvider>
+    <AppearanceProvider>
+      <ApolloProvider client={client}>
+        <NavigationContainer theme={theme}>
+          <StatusBar barStyle={barStyle} />
+          <ModalStackScreen />
+        </NavigationContainer>
+      </ApolloProvider>
+    </AppearanceProvider>
   );
 }

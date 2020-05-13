@@ -3,12 +3,16 @@
 exports[`<ErrorView /> renders correctly 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "backgroundColor": "#fff",
-      "flex": 1,
-      "justifyContent": "center",
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+      },
+      Object {
+        "backgroundColor": "rgb(242, 242, 242)",
+      },
+    ]
   }
 >
   <Text

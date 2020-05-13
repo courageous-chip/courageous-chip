@@ -20,12 +20,16 @@ exports[`<HabitList /> renders as empty 1`] = `
   >
     <View
       style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#fff",
-          "flex": 1,
-          "justifyContent": "center",
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          Object {
+            "backgroundColor": "rgb(242, 242, 242)",
+          },
+        ]
       }
     >
       <Text
@@ -62,12 +66,16 @@ exports[`<HabitList /> renders as loading 1`] = `
   >
     <View
       style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#fff",
-          "flex": 1,
-          "justifyContent": "center",
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          Object {
+            "backgroundColor": "rgb(242, 242, 242)",
+          },
+        ]
       }
     >
       <Text
@@ -104,10 +112,14 @@ exports[`<HabitList /> renders habits 1`] = `
   >
     <View
       style={
-        Object {
-          "backgroundColor": "#fff",
-          "flex": 1,
-        }
+        Array [
+          Object {
+            "flex": 1,
+          },
+          Object {
+            "backgroundColor": "rgb(242, 242, 242)",
+          },
+        ]
       }
     >
       <ScrollView
@@ -138,17 +150,27 @@ exports[`<HabitList /> renders habits 1`] = `
         >
           <View
             style={
-              Object {
-                "justifyContent": "center",
-                "minHeight": 64,
-              }
+              Array [
+                Object {
+                  "justifyContent": "center",
+                  "minHeight": 64,
+                },
+                Object {
+                  "backgroundColor": "rgb(255, 255, 255)",
+                },
+              ]
             }
           >
             <Text
               style={
-                Object {
-                  "marginHorizontal": 20,
-                }
+                Array [
+                  Object {
+                    "marginHorizontal": 20,
+                  },
+                  Object {
+                    "color": "rgb(28, 28, 30)",
+                  },
+                ]
               }
             >
               🦷 Floss Teeth
@@ -181,12 +203,16 @@ exports[`<HabitList /> renders on error 1`] = `
   >
     <View
       style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#fff",
-          "flex": 1,
-          "justifyContent": "center",
-        }
+        Array [
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          Object {
+            "backgroundColor": "rgb(242, 242, 242)",
+          },
+        ]
       }
     >
       <Text

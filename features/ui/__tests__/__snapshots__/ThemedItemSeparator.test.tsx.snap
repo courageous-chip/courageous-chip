@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<EmptyView /> renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "height": 1,
+        "width": "100%",
+      },
+      Object {
+        "backgroundColor": "rgb(224, 224, 224)",
+      },
+    ]
+  }
+/>
+`;

@@ -3,17 +3,27 @@
 exports[`<HabitListItem /> renders correctly 1`] = `
 <View
   style={
-    Object {
-      "justifyContent": "center",
-      "minHeight": 64,
-    }
+    Array [
+      Object {
+        "justifyContent": "center",
+        "minHeight": 64,
+      },
+      Object {
+        "backgroundColor": "rgb(255, 255, 255)",
+      },
+    ]
   }
 >
   <Text
     style={
-      Object {
-        "marginHorizontal": 20,
-      }
+      Array [
+        Object {
+          "marginHorizontal": 20,
+        },
+        Object {
+          "color": "rgb(28, 28, 30)",
+        },
+      ]
     }
   >
     🦷 Floss Teeth

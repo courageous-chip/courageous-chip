@@ -1,19 +1,23 @@
-import { useQuery, gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
+import { useTheme } from "@react-navigation/native";
 import React, { FC } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 
 import { EmptyView } from "../../ui/EmptyView";
 import { ErrorView } from "../../ui/ErrorView";
 import { LoadingView } from "../../ui/LoadingView";
+import { ThemedItemSeparator } from "../../ui/ThemedItemSeparator";
 import {
-  ItemSeparatorComponent,
+  HABIT_LIST_ITEM_FIELDS_FRAGMENT,
   keyExtractor,
   renderItem,
-  HABIT_LIST_ITEM_FIELDS_FRAGMENT,
 } from "./HabitListItem";
 import { GetHabits } from "./__generated__/GetHabits";
 
 export const HabitList: FC = function () {
+  const {
+    colors: { background: backgroundColor },
+  } = useTheme();
   const { data, error, loading } = useQuery<GetHabits>(GET_HABITS_QUERY);
 
   return loading ? (
@@ -23,10 +27,10 @@ export const HabitList: FC = function () {
   ) : !data?.habits.length ? (
     <EmptyView />
   ) : (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor }]}>
       <FlatList
         data={data.habits}
-        ItemSeparatorComponent={ItemSeparatorComponent}
+        ItemSeparatorComponent={ThemedItemSeparator}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
       />
@@ -46,7 +50,6 @@ export const GET_HABITS_QUERY = gql`
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
     flex: 1,
   },
 });
