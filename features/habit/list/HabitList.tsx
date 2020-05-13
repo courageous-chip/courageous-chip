@@ -20,19 +20,13 @@ export const HabitList: FC = function () {
   } = useTheme();
   const { data, error, loading } = useQuery<GetHabits>(GET_HABITS_QUERY);
 
-  if (loading) {
-    return <LoadingView />;
-  }
-
-  if (error) {
-    return <ErrorView />;
-  }
-
-  if (!data?.habits.length) {
-    return <EmptyView />;
-  }
-
-  return (
+  return loading ? (
+    <LoadingView />
+  ) : error ? (
+    <ErrorView />
+  ) : !data?.habits.length ? (
+    <EmptyView />
+  ) : (
     <View style={[styles.container, { backgroundColor }]}>
       <FlatList
         data={data.habits}

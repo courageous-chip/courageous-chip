@@ -20,19 +20,13 @@ export const ExerciseList: FC = function () {
   } = useTheme();
   const { data, error, loading } = useQuery<GetExercises>(GET_EXERCISES_QUERY);
 
-  if (loading) {
-    return <LoadingView />;
-  }
-
-  if (error) {
-    return <ErrorView />;
-  }
-
-  if (!data?.exercises.length) {
-    return <EmptyView />;
-  }
-
-  return (
+  return loading ? (
+    <LoadingView />
+  ) : error ? (
+    <ErrorView />
+  ) : !data?.exercises.length ? (
+    <EmptyView />
+  ) : (
     <View style={[styles.container, { backgroundColor }]}>
       <FlatList
         data={data.exercises}
