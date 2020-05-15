@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
@@ -10,6 +10,9 @@ export const HabitFormScreen: FC = function () {
   const navigation = useNavigation<
     StackNavigationProp<ModalStackParamList, HabitFormModalStackScreenName>
   >();
+  const route = useRoute<
+    RouteProp<ModalStackParamList, HabitFormModalStackScreenName>
+  >();
 
   navigation.setOptions({
     headerBackImage: () => null,
@@ -17,7 +20,7 @@ export const HabitFormScreen: FC = function () {
     headerBackTitle: "👎",
   });
 
-  return <HabitForm />;
+  return <HabitForm id={route.params?.id} />;
 };
 
 export enum HabitFormModalStackScreenName {
@@ -25,7 +28,7 @@ export enum HabitFormModalStackScreenName {
 }
 
 export type HabitFormModalStackParamList = {
-  [HabitFormModalStackScreenName.HabitForm]: { id?: string };
+  [HabitFormModalStackScreenName.HabitForm]?: { id: string };
 };
 
 const styles = StyleSheet.create({

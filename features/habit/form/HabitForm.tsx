@@ -1,7 +1,10 @@
 import React, { FC } from "react";
 
 import { EmptyView } from "../../ui/EmptyView";
+import { GetHabits } from "../list/__generated__/GetHabits";
 
-export const HabitForm: FC = function () {
+type Props = { id?: GetHabits["habits"][0]["id"] };
+
+export const HabitForm: FC<Props> = function () {
   return <EmptyView />;
 };
