@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
@@ -10,6 +10,9 @@ export const ExerciseFormScreen: FC = function () {
   const navigation = useNavigation<
     StackNavigationProp<ModalStackParamList, ExerciseFormModalStackScreenName>
   >();
+  const route = useRoute<
+    RouteProp<ModalStackParamList, ExerciseFormModalStackScreenName>
+  >();
 
   navigation.setOptions({
     headerBackImage: () => null,
@@ -17,7 +20,7 @@ export const ExerciseFormScreen: FC = function () {
     headerBackTitle: "👎",
   });
 
-  return <ExerciseForm />;
+  return <ExerciseForm id={route.params?.id} />;
 };
 
 export enum ExerciseFormModalStackScreenName {
@@ -25,7 +28,7 @@ export enum ExerciseFormModalStackScreenName {
 }
 
 export type ExerciseFormModalStackParamList = {
-  [ExerciseFormModalStackScreenName.ExerciseForm]: { id?: string };
+  [ExerciseFormModalStackScreenName.ExerciseForm]?: { id: string };
 };
 
 const styles = StyleSheet.create({

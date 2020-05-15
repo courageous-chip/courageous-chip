@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v1.4.1
         with:
           # Version Spec of the version to use.  Examples: 10.x, 10.15.1, >=10.15.0
-          node-version: 12.16.2 # optional, default is 10.x
+          node-version: 12.16.3 # optional, default is 10.x
 
       - name: Install Yarn 1.22.4
         run: npm install yarn@1.22.4 --global
