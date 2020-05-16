@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 
 import { EmptyView } from "../../ui/EmptyView";
-import { GetHabits } from "../list/__generated__/GetHabits";
+import { GetListHabitsQuery } from "../list/__generated__/GetListHabitsQuery";
 
-type Props = { id?: GetHabits["habits"][0]["id"] };
+type Props = { id?: GetListHabitsQuery["habits"][0]["id"] };
 
 export const HabitForm: FC<Props> = function () {
   return <EmptyView />;

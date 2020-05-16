@@ -1,15 +1,15 @@
 import { Resolvers } from "@apollo/client";
 import * as firebase from "firebase/app";
 
-import { GetHabits_habits } from "../list/__generated__/GetHabits";
+import { GetListHabitsQuery } from "../list/__generated__/GetListHabitsQuery";
 
-type Habit = Omit<GetHabits_habits, "__typename">;
+type ListHabit = Omit<GetListHabitsQuery["habits"][0], "__typename">;
 
 export const resolvers: Resolvers = {
   Query: {
     habits: async () => {
       const snapshots = await firebase.firestore().collection("habits").get();
-      const habits = snapshots.docs.map<Habit>((snapshot) => ({
+      const habits = snapshots.docs.map<ListHabit>((snapshot) => ({
         id: snapshot.id,
         name: snapshot.data().name,
       }));

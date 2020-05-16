@@ -3,13 +3,13 @@ import { render, wait } from "@testing-library/react-native";
 import { GraphQLError } from "graphql";
 import React from "react";
 
-import { ExerciseList, GET_EXERCISES_QUERY } from "../ExerciseList";
+import { ExerciseList, GET_LIST_EXERCISES_QUERY } from "../ExerciseList";
 
 describe("<ExerciseList />", () => {
   it("renders as empty", async () => {
     const mocks: MockedResponse[] = [
       {
-        request: { query: GET_EXERCISES_QUERY },
+        request: { query: GET_LIST_EXERCISES_QUERY },
         result: {
           data: {
             exercises: [],
@@ -31,7 +31,7 @@ describe("<ExerciseList />", () => {
   it("renders exercises", async () => {
     const mocks: MockedResponse[] = [
       {
-        request: { query: GET_EXERCISES_QUERY },
+        request: { query: GET_LIST_EXERCISES_QUERY },
         result: {
           data: {
             exercises: [
@@ -55,7 +55,7 @@ describe("<ExerciseList />", () => {
   it("renders as loading", async () => {
     const mocks: MockedResponse[] = [
       {
-        request: { query: GET_EXERCISES_QUERY },
+        request: { query: GET_LIST_EXERCISES_QUERY },
         result: {},
       },
     ];
@@ -73,7 +73,7 @@ describe("<ExerciseList />", () => {
   it("renders on error", async () => {
     const mocks: MockedResponse[] = [
       {
-        request: { query: GET_EXERCISES_QUERY },
+        request: { query: GET_LIST_EXERCISES_QUERY },
         result: {
           errors: [new GraphQLError("🙅‍♀️")],
         },

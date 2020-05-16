@@ -3,13 +3,13 @@ import { render, wait } from "@testing-library/react-native";
 import { GraphQLError } from "graphql";
 import React from "react";
 
-import { HabitList, GET_HABITS_QUERY } from "../HabitList";
+import { HabitList, GET_LIST_HABITS_QUERY } from "../HabitList";
 
 describe("<HabitList />", () => {
   it("renders as empty", async () => {
     const mocks: MockedResponse[] = [
       {
-        request: { query: GET_HABITS_QUERY },
+        request: { query: GET_LIST_HABITS_QUERY },
         result: {
           data: {
             habits: [],
@@ -31,7 +31,7 @@ describe("<HabitList />", () => {
   it("renders habits", async () => {
     const mocks: MockedResponse[] = [
       {
-        request: { query: GET_HABITS_QUERY },
+        request: { query: GET_LIST_HABITS_QUERY },
         result: {
           data: {
             habits: [{ id: "1", name: "🦷 Floss Teeth", __typename: "Habit" }],
@@ -53,7 +53,7 @@ describe("<HabitList />", () => {
   it("renders as loading", async () => {
     const mocks: MockedResponse[] = [
       {
-        request: { query: GET_HABITS_QUERY },
+        request: { query: GET_LIST_HABITS_QUERY },
         result: {},
       },
     ];
@@ -71,7 +71,7 @@ describe("<HabitList />", () => {
   it("renders on error", async () => {
     const mocks: MockedResponse[] = [
       {
-        request: { query: GET_HABITS_QUERY },
+        request: { query: GET_LIST_HABITS_QUERY },
         result: {
           errors: [new GraphQLError("🙅‍♀️")],
         },
