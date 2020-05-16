@@ -12,14 +12,14 @@ import {
   keyExtractor,
   renderItem,
 } from "./ExerciseListItem";
-import { GetListExercisesQuery } from "./__generated__/GetListExercisesQuery";
+import { ListExercisesQuery } from "./__generated__/ListExercisesQuery";
 
 export const ExerciseList: FC = function () {
   const {
     colors: { background: backgroundColor },
   } = useTheme();
-  const { data, error, loading } = useQuery<GetListExercisesQuery>(
-    GET_LIST_EXERCISES_QUERY,
+  const { data, error, loading } = useQuery<ListExercisesQuery>(
+    LIST_EXERCISES_QUERY,
   );
 
   return loading ? (
@@ -40,8 +40,8 @@ export const ExerciseList: FC = function () {
   );
 };
 
-export const GET_LIST_EXERCISES_QUERY = gql`
-  query GetListExercisesQuery {
+export const LIST_EXERCISES_QUERY = gql`
+  query ListExercisesQuery {
     exercises {
       ...ExerciseListItemFields
     }

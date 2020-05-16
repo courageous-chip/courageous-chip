@@ -4,15 +4,19 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetListHabitsQuery
+// GraphQL query operation: ShowHabitQuery
 // ====================================================
 
-export interface GetListHabitsQuery_habits {
+export interface ShowHabitQuery_habit {
   readonly __typename: "Habit";
   readonly id: string;
   readonly name: string;
 }
 
-export interface GetListHabitsQuery {
-  readonly habits: ReadonlyArray<GetListHabitsQuery_habits>;
+export interface ShowHabitQuery {
+  readonly habit: ShowHabitQuery_habit;
+}
+
+export interface ShowHabitQueryVariables {
+  readonly id: string;
 }

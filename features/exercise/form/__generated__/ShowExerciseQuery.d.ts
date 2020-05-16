@@ -4,19 +4,19 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetFormExerciseQuery
+// GraphQL query operation: ShowExerciseQuery
 // ====================================================
 
-export interface GetFormExerciseQuery_exercise {
+export interface ShowExerciseQuery_exercise {
   readonly __typename: "Exercise";
   readonly id: string;
   readonly name: string;
 }
 
-export interface GetFormExerciseQuery {
-  readonly exercise: GetFormExerciseQuery_exercise;
+export interface ShowExerciseQuery {
+  readonly exercise: ShowExerciseQuery_exercise;
 }
 
-export interface GetFormExerciseQueryVariables {
+export interface ShowExerciseQueryVariables {
   readonly id: string;
 }

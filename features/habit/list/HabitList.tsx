@@ -12,15 +12,13 @@ import {
   keyExtractor,
   renderItem,
 } from "./HabitListItem";
-import { GetListHabitsQuery } from "./__generated__/GetListHabitsQuery";
+import { ListHabitsQuery } from "./__generated__/ListHabitsQuery";
 
 export const HabitList: FC = function () {
   const {
     colors: { background: backgroundColor },
   } = useTheme();
-  const { data, error, loading } = useQuery<GetListHabitsQuery>(
-    GET_LIST_HABITS_QUERY,
-  );
+  const { data, error, loading } = useQuery<ListHabitsQuery>(LIST_HABITS_QUERY);
 
   return loading ? (
     <LoadingView />
@@ -40,8 +38,8 @@ export const HabitList: FC = function () {
   );
 };
 
-export const GET_LIST_HABITS_QUERY = gql`
-  query GetListHabitsQuery {
+export const LIST_HABITS_QUERY = gql`
+  query ListHabitsQuery {
     habits {
       ...HabitListItemFields
     }
