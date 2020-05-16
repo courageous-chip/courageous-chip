@@ -148,7 +148,8 @@ exports[`<HabitList /> renders habits 1`] = `
         <View
           style={null}
         >
-          <View
+          <TouchableOpacity
+            activeOpacity={0.2}
             style={
               Array [
                 Object {
@@ -175,7 +176,7 @@ exports[`<HabitList /> renders habits 1`] = `
             >
               🦷 Floss Teeth
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </View>

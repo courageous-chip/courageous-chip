@@ -6,7 +6,7 @@ import { HabitListItem } from "../HabitListItem";
 describe("<HabitListItem />", () => {
   it("renders correctly", () => {
     const tree = renderer
-      .create(<HabitListItem name="🦷 Floss Teeth" />)
+      .create(<HabitListItem id="1" name="🦷 Floss Teeth" onPress={() => {}} />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

@@ -14,9 +14,7 @@ export const ExerciseListScreen: FC = function () {
     headerRight: () => (
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate(ExerciseFormModalStackScreenName.ExerciseForm, {
-            id: "zhcRj3CAI0CIp1vNbuMg",
-          })
+          navigation.navigate(ExerciseFormModalStackScreenName.ExerciseForm)
         }
         style={styles.headerRightContainer}
       >
@@ -25,7 +23,15 @@ export const ExerciseListScreen: FC = function () {
     ),
   });
 
-  return <ExerciseList />;
+  return (
+    <ExerciseList
+      onPress={(id) =>
+        navigation.navigate(ExerciseFormModalStackScreenName.ExerciseForm, {
+          id,
+        })
+      }
+    />
+  );
 };
 
 const styles = StyleSheet.create({

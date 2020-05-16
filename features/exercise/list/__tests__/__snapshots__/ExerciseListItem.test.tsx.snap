@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ExerciseListItem /> renders correctly 1`] = `
-<View
+<TouchableOpacity
+  activeOpacity={0.2}
+  onPress={[Function]}
   style={
     Array [
       Object {
@@ -28,5 +30,5 @@ exports[`<ExerciseListItem /> renders correctly 1`] = `
   >
     🏋️‍♀️ Deadlift
   </Text>
-</View>
+</TouchableOpacity>
 `;

@@ -6,6 +6,8 @@ import React from "react";
 import { ExerciseList, LIST_EXERCISES_QUERY } from "../ExerciseList";
 
 describe("<ExerciseList />", () => {
+  const MockedExerciseList = () => <ExerciseList onPress={() => {}} />;
+
   it("renders as empty", async () => {
     const mocks: MockedResponse[] = [
       {
@@ -19,7 +21,7 @@ describe("<ExerciseList />", () => {
     ];
     const { baseElement, getByText } = render(
       <MockedProvider mocks={mocks}>
-        <ExerciseList />
+        <MockedExerciseList />
       </MockedProvider>,
     );
 
@@ -43,7 +45,7 @@ describe("<ExerciseList />", () => {
     ];
     const { baseElement, getByText } = render(
       <MockedProvider mocks={mocks}>
-        <ExerciseList />
+        <MockedExerciseList />
       </MockedProvider>,
     );
 
@@ -61,7 +63,7 @@ describe("<ExerciseList />", () => {
     ];
     const { baseElement, getByText } = render(
       <MockedProvider mocks={mocks}>
-        <ExerciseList />
+        <MockedExerciseList />
       </MockedProvider>,
     );
 
@@ -81,7 +83,7 @@ describe("<ExerciseList />", () => {
     ];
     const { baseElement, getByText } = render(
       <MockedProvider mocks={mocks}>
-        <ExerciseList />
+        <MockedExerciseList />
       </MockedProvider>,
     );
 

@@ -14,9 +14,7 @@ export const HabitListScreen: FC = function () {
     headerRight: () => (
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate(HabitFormModalStackScreenName.HabitForm, {
-            id: "tzjZZh4M5AuJ3ZTZ4h88",
-          })
+          navigation.navigate(HabitFormModalStackScreenName.HabitForm)
         }
         style={styles.headerRightContainer}
       >
@@ -25,7 +23,13 @@ export const HabitListScreen: FC = function () {
     ),
   });
 
-  return <HabitList />;
+  return (
+    <HabitList
+      onPress={(id) =>
+        navigation.navigate(HabitFormModalStackScreenName.HabitForm, { id })
+      }
+    />
+  );
 };
 
 const styles = StyleSheet.create({
