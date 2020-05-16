@@ -1,9 +1,9 @@
 import { Resolvers } from "@apollo/client";
 import * as firebase from "firebase/app";
 
-import { GetHabits_habits } from "../list/__generated__/GetHabits";
+import { GetListHabitsQuery } from "../list/__generated__/GetListHabitsQuery";
 
-type Habit = Omit<GetHabits_habits, "__typename">;
+type Habit = Omit<GetListHabitsQuery["habits"][0], "__typename">;
 
 export const resolvers: Resolvers = {
   Query: {
