@@ -14,7 +14,9 @@ export const ExerciseListScreen: FC = function () {
     headerRight: () => (
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate(ExerciseFormModalStackScreenName.ExerciseForm)
+          navigation.navigate(ExerciseFormModalStackScreenName.ExerciseForm, {
+            id: "zhcRj3CAI0CIp1vNbuMg",
+          })
         }
         style={styles.headerRightContainer}
       >
