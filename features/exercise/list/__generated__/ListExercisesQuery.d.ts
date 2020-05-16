@@ -4,19 +4,15 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetFormHabitQuery
+// GraphQL query operation: ListExercisesQuery
 // ====================================================
 
-export interface GetFormHabitQuery_habit {
-  readonly __typename: "Habit";
+export interface ListExercisesQuery_exercises {
+  readonly __typename: "Exercise";
   readonly id: string;
   readonly name: string;
 }
 
-export interface GetFormHabitQuery {
-  readonly habit: GetFormHabitQuery_habit;
-}
-
-export interface GetFormHabitQueryVariables {
-  readonly id: string;
+export interface ListExercisesQuery {
+  readonly exercises: ReadonlyArray<ListExercisesQuery_exercises>;
 }

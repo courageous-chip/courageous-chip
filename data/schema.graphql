@@ -1,3 +1,27 @@
+input CreateExerciseInput {
+  name: String!
+}
+
+input CreateHabitInput {
+  name: String!
+}
+
+input DeleteExerciseInput {
+  id: ID!
+}
+
+type DeleteExerciseOutput {
+  id: ID!
+}
+
+input DeleteHabitInput {
+  id: ID!
+}
+
+type DeleteHabitOutput {
+  id: ID!
+}
+
 type Exercise {
   id: ID!
   name: String!
@@ -8,9 +32,28 @@ type Habit {
   name: String!
 }
 
+type Mutation {
+  createExercise(exercise: CreateExerciseInput!): Exercise!
+  deleteExercise(exercise: DeleteExerciseInput): DeleteExerciseOutput!
+  updateExercise(exercise: UpdateExerciseInput!): Exercise!
+  createHabit(habit: CreateHabitInput!): Habit!
+  deleteHabit(habit: DeleteHabitInput): DeleteHabitOutput!
+  updateHabit(habit: UpdateHabitInput!): Habit!
+}
+
 type Query {
   exercise(id: ID!): Exercise!
   exercises: [Exercise!]!
   habit(id: ID!): Habit!
   habits: [Habit!]!
+}
+
+input UpdateExerciseInput {
+  id: ID!
+  name: String!
+}
+
+input UpdateHabitInput {
+  id: ID!
+  name: String!
 }
