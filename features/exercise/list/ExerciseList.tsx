@@ -8,13 +8,16 @@ import { ErrorView } from "../../ui/ErrorView";
 import { LoadingView } from "../../ui/LoadingView";
 import { ThemedItemSeparator } from "../../ui/ThemedItemSeparator";
 import {
+  ExerciseListItemOnPress,
   EXERCISE_LIST_ITEM_FIELDS_FRAGMENT,
   keyExtractor,
   renderItem,
 } from "./ExerciseListItem";
 import { ListExercisesQuery } from "./__generated__/ListExercisesQuery";
 
-export const ExerciseList: FC = function () {
+type Props = { onPress: ExerciseListItemOnPress };
+
+export const ExerciseList: FC<Props> = function ({ onPress }) {
   const {
     colors: { background: backgroundColor },
   } = useTheme();
@@ -34,7 +37,7 @@ export const ExerciseList: FC = function () {
         data={data.exercises}
         ItemSeparatorComponent={ThemedItemSeparator}
         keyExtractor={keyExtractor}
-        renderItem={renderItem}
+        renderItem={renderItem(onPress)}
       />
     </View>
   );

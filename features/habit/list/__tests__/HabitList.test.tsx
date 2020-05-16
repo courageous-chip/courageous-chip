@@ -6,6 +6,8 @@ import React from "react";
 import { HabitList, LIST_HABITS_QUERY } from "../HabitList";
 
 describe("<HabitList />", () => {
+  const MockedHabitList = () => <HabitList onPress={() => {}} />;
+
   it("renders as empty", async () => {
     const mocks: MockedResponse[] = [
       {
@@ -19,7 +21,7 @@ describe("<HabitList />", () => {
     ];
     const { baseElement, getByText } = render(
       <MockedProvider mocks={mocks}>
-        <HabitList />
+        <MockedHabitList />
       </MockedProvider>,
     );
 
@@ -41,7 +43,7 @@ describe("<HabitList />", () => {
     ];
     const { baseElement, getByText } = render(
       <MockedProvider mocks={mocks}>
-        <HabitList />
+        <MockedHabitList />
       </MockedProvider>,
     );
 
@@ -59,7 +61,7 @@ describe("<HabitList />", () => {
     ];
     const { baseElement, getByText } = render(
       <MockedProvider mocks={mocks}>
-        <HabitList />
+        <MockedHabitList />
       </MockedProvider>,
     );
 
@@ -79,7 +81,7 @@ describe("<HabitList />", () => {
     ];
     const { baseElement, getByText } = render(
       <MockedProvider mocks={mocks}>
-        <HabitList />
+        <MockedHabitList />
       </MockedProvider>,
     );
 

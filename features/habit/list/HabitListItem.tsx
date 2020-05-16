@@ -1,7 +1,13 @@
 import { gql } from "@apollo/client";
 import { useTheme } from "@react-navigation/native";
 import React, { FC } from "react";
-import { FlatListProps, StyleSheet, Text, View } from "react-native";
+import {
+  FlatListProps,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from "react-native";
 
 import { HabitListItemFields } from "./__generated__/HabitListItemFields";
 
@@ -18,23 +24,32 @@ export const keyExtractor: FlatListProps<
   return id;
 };
 
-export const renderItem: FlatListProps<
-  HabitListItemFields
->["renderItem"] = function ({ item: { name } }) {
-  return <HabitListItem name={name} />;
+export type HabitListItemOnPress = (id: HabitListItemFields["id"]) => void;
+
+export const renderItem: (
+  onPress: HabitListItemOnPress,
+) => FlatListProps<HabitListItemFields>["renderItem"] = function (onPress) {
+  return function ({ item: { id, name } }) {
+    return <HabitListItem id={id} name={name} onPress={() => onPress(id)} />;
+  };
 };
 
-type Props = Pick<HabitListItemFields, "name">;
+type Props = Pick<HabitListItemFields, "id" | "name"> & {
+  onPress: TouchableOpacityProps["onPress"];
+};
 
-export const HabitListItem: FC<Props> = function ({ name }) {
+export const HabitListItem: FC<Props> = function ({ name, onPress }) {
   const {
     colors: { card: backgroundColor, text: color },
   } = useTheme();
 
   return (
-    <View style={[styles.itemContainer, { backgroundColor }]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.itemContainer, { backgroundColor }]}
+    >
       <Text style={[styles.itemText, { color }]}>{name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

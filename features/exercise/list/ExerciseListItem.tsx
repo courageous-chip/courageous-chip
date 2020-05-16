@@ -1,7 +1,13 @@
 import { gql } from "@apollo/client";
 import { useTheme } from "@react-navigation/native";
 import React, { FC } from "react";
-import { FlatListProps, StyleSheet, Text, View } from "react-native";
+import {
+  FlatListProps,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from "react-native";
 
 import { ExerciseListItemFields } from "./__generated__/ExerciseListItemFields";
 
@@ -18,23 +24,34 @@ export const keyExtractor: FlatListProps<
   return id;
 };
 
-export const renderItem: FlatListProps<
-  ExerciseListItemFields
->["renderItem"] = function ({ item: { name } }) {
-  return <ExerciseListItem name={name} />;
+export type ExerciseListItemOnPress = (
+  id: ExerciseListItemFields["id"],
+) => void;
+
+export const renderItem: (
+  onPress: ExerciseListItemOnPress,
+) => FlatListProps<ExerciseListItemFields>["renderItem"] = function (onPress) {
+  return function ({ item: { id, name } }) {
+    return <ExerciseListItem id={id} name={name} onPress={() => onPress(id)} />;
+  };
 };
 
-type Props = Pick<ExerciseListItemFields, "name">;
+type Props = Pick<ExerciseListItemFields, "id" | "name"> & {
+  onPress: TouchableOpacityProps["onPress"];
+};
 
-export const ExerciseListItem: FC<Props> = function ({ name }) {
+export const ExerciseListItem: FC<Props> = function ({ name, onPress }) {
   const {
     colors: { card: backgroundColor, text: color },
   } = useTheme();
 
   return (
-    <View style={[styles.itemContainer, { backgroundColor }]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.itemContainer, { backgroundColor }]}
+    >
       <Text style={[styles.itemText, { color }]}>{name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
