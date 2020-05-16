@@ -14,7 +14,9 @@ export const HabitListScreen: FC = function () {
     headerRight: () => (
       <TouchableOpacity
         onPress={() =>
-          navigation.navigate(HabitFormModalStackScreenName.HabitForm)
+          navigation.navigate(HabitFormModalStackScreenName.HabitForm, {
+            id: "tzjZZh4M5AuJ3ZTZ4h88",
+          })
         }
         style={styles.headerRightContainer}
       >
