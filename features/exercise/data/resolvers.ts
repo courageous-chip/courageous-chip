@@ -1,9 +1,9 @@
 import { Resolvers } from "@apollo/client";
 import * as firebase from "firebase/app";
 
-import { GetExercises_exercises } from "../list/__generated__/GetExercises";
+import { GetListExercisesQuery } from "../list/__generated__/GetListExercisesQuery";
 
-type Exercise = Omit<GetExercises_exercises, "__typename">;
+type Exercise = Omit<GetListExercisesQuery["exercises"][0], "__typename">;
 
 export const resolvers: Resolvers = {
   Query: {

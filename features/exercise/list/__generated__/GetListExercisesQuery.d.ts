@@ -4,15 +4,15 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetExercises
+// GraphQL query operation: GetListExercisesQuery
 // ====================================================
 
-export interface GetExercises_exercises {
+export interface GetListExercisesQuery_exercises {
   readonly __typename: "Exercise";
   readonly id: string;
   readonly name: string;
 }
 
-export interface GetExercises {
-  readonly exercises: ReadonlyArray<GetExercises_exercises>;
+export interface GetListExercisesQuery {
+  readonly exercises: ReadonlyArray<GetListExercisesQuery_exercises>;
 }
