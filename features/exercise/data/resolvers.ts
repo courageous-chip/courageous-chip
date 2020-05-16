@@ -3,7 +3,7 @@ import * as firebase from "firebase/app";
 
 import { GetListExercisesQuery } from "../list/__generated__/GetListExercisesQuery";
 
-type Exercise = Omit<GetListExercisesQuery["exercises"][0], "__typename">;
+type ListExercise = Omit<GetListExercisesQuery["exercises"][0], "__typename">;
 
 export const resolvers: Resolvers = {
   Query: {
@@ -12,7 +12,7 @@ export const resolvers: Resolvers = {
         .firestore()
         .collection("exercises")
         .get();
-      const exercises = snapshots.docs.map<Exercise>((snapshot) => ({
+      const exercises = snapshots.docs.map<ListExercise>((snapshot) => ({
         id: snapshot.id,
         name: snapshot.data().name,
       }));
