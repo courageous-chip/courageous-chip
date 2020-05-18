@@ -1,20 +1,46 @@
 import { useTheme } from "@react-navigation/native";
 import React, { memo } from "react";
-import { FlexStyle, StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  ActivityIndicator,
+  FlexStyle,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 
-type Props = { marginBottom?: FlexStyle["marginBottom"]; text: string };
+type Props = {
+  loading?: boolean;
+  marginBottom?: FlexStyle["marginBottom"];
+  text: string;
+  valid?: boolean;
+};
 
-export const Button = memo<Props>(function ({ marginBottom, text }) {
+export const Button = memo<Props>(function ({
+  loading = false,
+  marginBottom,
+  text,
+  valid = true,
+}) {
   const {
     colors: { card: backgroundColor, border: borderColor, text: color },
   } = useTheme();
+  const disabled = loading || !valid;
 
   return (
     <TouchableOpacity
+      disabled={disabled}
       onPress={() => {}}
-      style={[styles.container, { backgroundColor, borderColor, marginBottom }]}
+      style={[
+        styles.container,
+        { backgroundColor, borderColor, marginBottom },
+        disabled && styles.disabled,
+      ]}
     >
-      <Text style={[styles.text, { color }]}>{text}</Text>
+      {loading ? (
+        <ActivityIndicator color={color} />
+      ) : (
+        <Text style={[styles.text, { color }]}>{valid ? text : "🙅‍♀️"}</Text>
+      )}
     </TouchableOpacity>
   );
 });
@@ -26,6 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     minHeight: 64,
   },
+  disabled: { opacity: 0.5 },
   text: {
     fontSize: 14,
     lineHeight: 17,

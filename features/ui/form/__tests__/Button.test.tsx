@@ -11,4 +11,12 @@ describe("<Button />", () => {
 
     expect(tree).toMatchSnapshot();
   });
+
+  it("renders loading", () => {
+    const tree = renderer
+      .create(<Button loading marginBottom={5} text="🌴" />)
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });

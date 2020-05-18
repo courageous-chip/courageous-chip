@@ -8,12 +8,16 @@ import {
   View,
 } from "react-native";
 
-type Props = {
-  marginBottom?: FlexStyle["marginBottom"];
-  placeholder?: TextInputProps["placeholder"];
-};
+type Props = Pick<FlexStyle, "marginBottom"> &
+  Pick<TextInputProps, "autoFocus" | "onChangeText" | "placeholder" | "value">;
 
-export const TextField = memo<Props>(function ({ marginBottom, placeholder }) {
+export const TextField = memo<Props>(function ({
+  autoFocus,
+  marginBottom,
+  onChangeText,
+  placeholder,
+  value,
+}) {
   const {
     colors: { border: borderColor, card: backgroundColor, text: color },
   } = useTheme();
@@ -23,9 +27,12 @@ export const TextField = memo<Props>(function ({ marginBottom, placeholder }) {
       style={[styles.container, { backgroundColor, borderColor, marginBottom }]}
     >
       <TextInput
+        autoFocus={autoFocus}
         clearButtonMode="while-editing"
+        onChangeText={onChangeText}
         placeholder={placeholder}
         style={[styles.input, { color }]}
+        value={value}
       />
     </View>
   );
