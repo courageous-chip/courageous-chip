@@ -18,13 +18,12 @@ exports[`<HabitForm /> renders as empty 1`] = `
       }
     }
   >
-    <View
+    <ScrollView
       style={
         Array [
           Object {
-            "alignItems": "center",
-            "flex": 1,
-            "justifyContent": "center",
+            "paddingHorizontal": 20,
+            "paddingVertical": 10,
           },
           Object {
             "backgroundColor": "rgb(242, 242, 242)",
@@ -32,16 +31,77 @@ exports[`<HabitForm /> renders as empty 1`] = `
         ]
       }
     >
-      <Text
+      <View
         style={
-          Object {
-            "fontSize": 72,
-          }
+          Array [
+            Object {
+              "borderWidth": 1,
+              "justifyContent": "center",
+              "minHeight": 64,
+              "paddingHorizontal": 10,
+            },
+            Object {
+              "backgroundColor": "rgb(255, 255, 255)",
+              "borderColor": "rgb(224, 224, 224)",
+              "marginBottom": 20,
+            },
+          ]
         }
       >
-        🤷‍♀️
-      </Text>
-    </View>
+        <TextInput
+          allowFontScaling={true}
+          clearButtonMode="while-editing"
+          placeholder="🦷 Floss Teeth"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "fontSize": 14,
+                "lineHeight": 17,
+              },
+              Object {
+                "color": "rgb(28, 28, 30)",
+              },
+            ]
+          }
+          underlineColorAndroid="transparent"
+        />
+      </View>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderWidth": 1,
+              "justifyContent": "center",
+              "minHeight": 64,
+            },
+            Object {
+              "backgroundColor": "rgb(255, 255, 255)",
+              "borderColor": "rgb(224, 224, 224)",
+              "marginBottom": 10,
+            },
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "fontSize": 14,
+                "lineHeight": 17,
+              },
+              Object {
+                "color": "rgb(28, 28, 30)",
+              },
+            ]
+          }
+        >
+          💾
+        </Text>
+      </TouchableOpacity>
+    </ScrollView>
   </View>
 </View>
 `;

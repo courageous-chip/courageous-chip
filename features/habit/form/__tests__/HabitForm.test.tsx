@@ -1,14 +1,14 @@
-import { render, wait } from "@testing-library/react-native";
+import { render } from "@testing-library/react-native";
 import React from "react";
 
 import { HabitForm } from "../HabitForm";
 
 describe("<HabitForm />", () => {
   it("renders as empty", async () => {
-    const { baseElement, getByText } = render(<HabitForm />);
+    const { baseElement, findByText } = render(<HabitForm />);
+    const saveButton = await findByText("💾");
 
-    await wait(() => expect(getByText("🤷‍♀️")));
-
+    expect(saveButton).toBeTruthy();
     expect(baseElement).toMatchSnapshot();
   });
 });
