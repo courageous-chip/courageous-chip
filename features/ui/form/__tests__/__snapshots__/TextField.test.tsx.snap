@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextField /> renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "borderWidth": 1,
+        "justifyContent": "center",
+        "minHeight": 64,
+        "paddingHorizontal": 10,
+      },
+      Object {
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderColor": "rgb(224, 224, 224)",
+        "marginBottom": 5,
+      },
+    ]
+  }
+>
+  <TextInput
+    allowFontScaling={true}
+    clearButtonMode="while-editing"
+    placeholder="💪 Biceps Curl"
+    rejectResponderTermination={true}
+    style={
+      Array [
+        Object {
+          "fontSize": 14,
+          "lineHeight": 17,
+        },
+        Object {
+          "color": "rgb(28, 28, 30)",
+        },
+      ]
+    }
+    underlineColorAndroid="transparent"
+  />
+</View>
+`;

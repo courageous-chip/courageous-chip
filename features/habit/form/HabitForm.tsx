@@ -1,37 +1,107 @@
-import { gql, useLazyQuery } from "@apollo/client";
-import React, { FC, useEffect } from "react";
+import { gql, useApolloClient } from "@apollo/client";
+import { useTheme } from "@react-navigation/native";
+import { GraphQLError } from "graphql";
+import React, { FC, useEffect, useReducer } from "react";
+import { ScrollView, StyleSheet } from "react-native";
 
-import { EmptyView } from "../../ui/EmptyView";
+import { ErrorView } from "../../ui/ErrorView";
+import { Button } from "../../ui/form/Button";
+import { TextField } from "../../ui/form/TextField";
 import { ListHabitsQuery } from "../list/__generated__/ListHabitsQuery";
 import {
   ShowHabitQuery,
   ShowHabitQueryVariables,
 } from "./__generated__/ShowHabitQuery";
+import { reducer } from "./reducer";
+import { ActionType } from "./reducer/ActionType";
+import { initialState } from "./reducer/initialState";
 
 type Props = { id?: ListHabitsQuery["habits"][0]["id"] };
 
 export const HabitForm: FC<Props> = function ({ id }) {
-  const { data, error, loading } = useHabitMaybe(id);
-
-  return <EmptyView />;
-};
-
-const useHabitMaybe = (id: Props["id"]) => {
-  const [showHabit, result] = useLazyQuery<
-    ShowHabitQuery,
-    ShowHabitQueryVariables
-  >(SHOW_HABIT_QUERY);
+  const client = useApolloClient();
+  const {
+    colors: { background: backgroundColor },
+  } = useTheme();
+  const [{ error, id: _id, loading, name, valid }, dispatch] = useReducer(
+    reducer,
+    initialState,
+  );
 
   useEffect(() => {
-    if (!id) {
-      return;
-    }
+    const showHabit = async () => {
+      if (!id) {
+        return;
+      }
 
-    showHabit({ variables: { id } });
-  }, [id, showHabit]);
+      dispatch({ type: ActionType.ShowHabitRequest });
 
-  return result;
+      const { data, errors } = await client.query<
+        ShowHabitQuery,
+        ShowHabitQueryVariables
+      >({
+        fetchPolicy: "network-only",
+        query: SHOW_HABIT_QUERY,
+        variables: { id },
+      });
+
+      if (errors) {
+        return dispatch({
+          error: reduceGraphQLErrors(errors),
+          type: ActionType.ShowHabitFailure,
+        });
+      }
+
+      if (!data) {
+        return dispatch({
+          error: new Error("Fetching the habit failed. Please try again."),
+          type: ActionType.ShowHabitFailure,
+        });
+      }
+
+      const {
+        habit: { id: requestedId, name },
+      } = data;
+
+      dispatch({ id: requestedId, name, type: ActionType.ShowHabitSuccess });
+    };
+
+    showHabit();
+  }, [client, id]);
+
+  return error && id ? (
+    <ErrorView />
+  ) : (
+    <ScrollView style={[styles.container, { backgroundColor }]}>
+      <TextField
+        autoFocus
+        marginBottom={styles.nameInput.marginBottom}
+        onChangeText={(name) => dispatch({ name, type: ActionType.ChangeName })}
+        placeholder="🦷 Floss Teeth"
+        value={name ?? undefined}
+      />
+      <Button
+        loading={loading}
+        marginBottom={styles.saveButton.marginBottom}
+        text="💾"
+        valid={valid}
+      />
+      {id ? <Button loading={loading} text="🗑" /> : null}
+    </ScrollView>
+  );
 };
+
+function reduceGraphQLErrors(errors: readonly GraphQLError[]): Error {
+  const message = errors.map((error) => error.message).join("\n");
+
+  return new Error(message);
+}
+
+const styles = StyleSheet.create({
+  container: { paddingHorizontal: 20, paddingVertical: 10 },
+  nameInput: { marginBottom: 20 },
+  saveButton: { marginBottom: 10 },
+});
 
 const CREATE_HABIT_MUTATION = gql`
   mutation CreateHabitMutation($habit: CreateHabitInput!) {
@@ -50,18 +120,18 @@ const DELETE_HABIT_MUTATION = gql`
   }
 `;
 
-const UPDATE_HABIT_MUTATION = gql`
-  mutation UpdateHabitMutation($habit: UpdateHabitInput!) {
-    updateHabit(habit: $habit) {
+const SHOW_HABIT_QUERY = gql`
+  query ShowHabitQuery($id: ID!) {
+    habit(id: $id) {
       id
       name
     }
   }
 `;
 
-const SHOW_HABIT_QUERY = gql`
-  query ShowHabitQuery($id: ID!) {
-    habit(id: $id) {
+const UPDATE_HABIT_MUTATION = gql`
+  mutation UpdateHabitMutation($habit: UpdateHabitInput!) {
+    updateHabit(habit: $habit) {
       id
       name
     }

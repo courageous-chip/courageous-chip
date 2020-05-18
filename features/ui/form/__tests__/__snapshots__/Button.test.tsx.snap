@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> renders correctly 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+  disabled={false}
+  onPress={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderWidth": 1,
+        "justifyContent": "center",
+        "minHeight": 64,
+      },
+      Object {
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderColor": "rgb(224, 224, 224)",
+        "marginBottom": 5,
+      },
+      false,
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontSize": 14,
+          "lineHeight": 17,
+        },
+        Object {
+          "color": "rgb(28, 28, 30)",
+        },
+      ]
+    }
+  >
+    🌴
+  </Text>
+</TouchableOpacity>
+`;
+
+exports[`<Button /> renders loading 1`] = `
+<TouchableOpacity
+  activeOpacity={0.2}
+  disabled={true}
+  onPress={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderWidth": 1,
+        "justifyContent": "center",
+        "minHeight": 64,
+      },
+      Object {
+        "backgroundColor": "rgb(255, 255, 255)",
+        "borderColor": "rgb(224, 224, 224)",
+        "marginBottom": 5,
+      },
+      Object {
+        "opacity": 0.5,
+      },
+    ]
+  }
+>
+  <ActivityIndicator
+    animating={true}
+    color="rgb(28, 28, 30)"
+    hidesWhenStopped={true}
+    size="small"
+  />
+</TouchableOpacity>
+`;
