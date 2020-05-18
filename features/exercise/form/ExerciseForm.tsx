@@ -12,9 +12,9 @@ import {
   ShowExerciseQuery,
   ShowExerciseQueryVariables,
 } from "./__generated__/ShowExerciseQuery";
+import { reducer } from "./reducer";
 import { ActionType } from "./reducer/ActionType";
 import { initialState } from "./reducer/initialState";
-import { reducer } from "./reducer/reducer";
 
 type Props = { id?: ListExercisesQuery["exercises"][0]["id"] };
 

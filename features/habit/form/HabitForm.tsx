@@ -12,9 +12,9 @@ import {
   ShowHabitQuery,
   ShowHabitQueryVariables,
 } from "./__generated__/ShowHabitQuery";
+import { reducer } from "./reducer";
 import { ActionType } from "./reducer/ActionType";
 import { initialState } from "./reducer/initialState";
-import { reducer } from "./reducer/reducer";
 
 type Props = { id?: ListHabitsQuery["habits"][0]["id"] };
 
