@@ -2,6 +2,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
+import {
+  ExerciseDetailScreen,
+  ExerciseDetailStackScreenName,
+  ExcerciseDetailStackScreenParamList,
+} from "../detail/ExerciseDetailScreen";
 import { ExerciseListScreen } from "../list/ExerciseListScreen";
 
 export const ExerciseStackScreen: FC = function () {
@@ -11,6 +16,14 @@ export const ExerciseStackScreen: FC = function () {
         component={ExerciseListScreen}
         name={ExerciseStackScreenName.ExerciseList}
         options={{ headerTitleStyle: styles.headerTitleStyle, title: "🏋️‍♀️" }}
+      />
+      <ExerciseStack.Screen
+        component={ExerciseDetailScreen}
+        name={ExerciseDetailStackScreenName.ExerciseDetail}
+        options={{
+          headerTitleStyle: styles.headerTitleStyle,
+          title: "Details",
+        }}
       />
     </ExerciseStack.Navigator>
   );
@@ -30,7 +43,7 @@ export enum ExerciseStackScreenName {
 
 export type ExerciseStackParamList = {
   [ExerciseStackScreenName.ExerciseList]: undefined;
-};
+} & ExcerciseDetailStackScreenParamList;
 
 const ExerciseStack = createStackNavigator<ExerciseStackParamList>();
 

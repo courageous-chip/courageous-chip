@@ -8,3 +8,11 @@ export const ExerciseDetailScreen: FunctionComponent = function () {
     </View>
   );
 };
+
+export enum ExerciseDetailStackScreenName {
+  ExerciseDetail = "ExerciseDetail",
+}
+
+export type ExcerciseDetailStackScreenParamList = {
+  [ExerciseDetailStackScreenName.ExerciseDetail]?: { id: string; name: string };
+};
