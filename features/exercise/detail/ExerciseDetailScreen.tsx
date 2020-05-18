@@ -14,5 +14,5 @@ export enum ExerciseDetailStackScreenName {
 }
 
 export type ExcerciseDetailStackScreenParamList = {
-  [ExerciseDetailStackScreenName.ExerciseDetail]?: { id: string; name: string };
+  [ExerciseDetailStackScreenName.ExerciseDetail]: { id: string; name: string };
 };

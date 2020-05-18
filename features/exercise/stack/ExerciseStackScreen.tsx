@@ -3,6 +3,11 @@ import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
 import {
+  HabitDetailStackScreenParamList,
+  HabitDetailScreen,
+  HabitDetailStackScreenName,
+} from "../../habit/detail/HabitDetailScreen";
+import {
   ExerciseDetailScreen,
   ExerciseDetailStackScreenName,
   ExcerciseDetailStackScreenParamList,
@@ -20,6 +25,14 @@ export const ExerciseStackScreen: FC = function () {
       <ExerciseStack.Screen
         component={ExerciseDetailScreen}
         name={ExerciseDetailStackScreenName.ExerciseDetail}
+        options={{
+          headerTitleStyle: styles.headerTitleStyle,
+          title: "Details",
+        }}
+      />
+      <ExerciseStack.Screen
+        component={HabitDetailScreen}
+        name={HabitDetailStackScreenName.HabitDetail}
         options={{
           headerTitleStyle: styles.headerTitleStyle,
           title: "Details",
@@ -43,7 +56,8 @@ export enum ExerciseStackScreenName {
 
 export type ExerciseStackParamList = {
   [ExerciseStackScreenName.ExerciseList]: undefined;
-} & ExcerciseDetailStackScreenParamList;
+} & ExcerciseDetailStackScreenParamList &
+  HabitDetailStackScreenParamList;
 
 const ExerciseStack = createStackNavigator<ExerciseStackParamList>();
 
