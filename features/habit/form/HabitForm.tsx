@@ -1,37 +1,36 @@
-import { gql, useLazyQuery } from "@apollo/client";
-import React, { FC, useEffect } from "react";
+import { gql } from "@apollo/client";
+import { useTheme } from "@react-navigation/native";
+import React, { FC } from "react";
+import { ScrollView, StyleSheet } from "react-native";
 
-import { EmptyView } from "../../ui/EmptyView";
+import { Button } from "../../ui/form/Button";
+import { TextField } from "../../ui/form/TextField";
 import { ListHabitsQuery } from "../list/__generated__/ListHabitsQuery";
-import {
-  ShowHabitQuery,
-  ShowHabitQueryVariables,
-} from "./__generated__/ShowHabitQuery";
 
 type Props = { id?: ListHabitsQuery["habits"][0]["id"] };
 
 export const HabitForm: FC<Props> = function ({ id }) {
-  const { data, error, loading } = useHabitMaybe(id);
+  const {
+    colors: { background: backgroundColor },
+  } = useTheme();
 
-  return <EmptyView />;
+  return (
+    <ScrollView style={[styles.container, { backgroundColor }]}>
+      <TextField
+        marginBottom={styles.nameInput.marginBottom}
+        placeholder="🦷 Floss Teeth"
+      />
+      <Button marginBottom={styles.saveButton.marginBottom} text="💾" />
+      {id ? <Button text="🗑" /> : null}
+    </ScrollView>
+  );
 };
 
-const useHabitMaybe = (id: Props["id"]) => {
-  const [showHabit, result] = useLazyQuery<
-    ShowHabitQuery,
-    ShowHabitQueryVariables
-  >(SHOW_HABIT_QUERY);
-
-  useEffect(() => {
-    if (!id) {
-      return;
-    }
-
-    showHabit({ variables: { id } });
-  }, [id, showHabit]);
-
-  return result;
-};
+const styles = StyleSheet.create({
+  container: { paddingHorizontal: 20, paddingVertical: 10 },
+  nameInput: { marginBottom: 20 },
+  saveButton: { marginBottom: 10 },
+});
 
 const CREATE_HABIT_MUTATION = gql`
   mutation CreateHabitMutation($habit: CreateHabitInput!) {
@@ -50,18 +49,18 @@ const DELETE_HABIT_MUTATION = gql`
   }
 `;
 
-const UPDATE_HABIT_MUTATION = gql`
-  mutation UpdateHabitMutation($habit: UpdateHabitInput!) {
-    updateHabit(habit: $habit) {
+const SHOW_HABIT_QUERY = gql`
+  query ShowHabitQuery($id: ID!) {
+    habit(id: $id) {
       id
       name
     }
   }
 `;
 
-const SHOW_HABIT_QUERY = gql`
-  query ShowHabitQuery($id: ID!) {
-    habit(id: $id) {
+const UPDATE_HABIT_MUTATION = gql`
+  mutation UpdateHabitMutation($habit: UpdateHabitInput!) {
+    updateHabit(habit: $habit) {
       id
       name
     }

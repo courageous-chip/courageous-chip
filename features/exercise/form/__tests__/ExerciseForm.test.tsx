@@ -1,14 +1,14 @@
-import { render, wait } from "@testing-library/react-native";
+import { render } from "@testing-library/react-native";
 import React from "react";
 
 import { ExerciseForm } from "../ExerciseForm";
 
 describe("<ExerciseForm />", () => {
   it("renders as empty", async () => {
-    const { baseElement, getByText } = render(<ExerciseForm />);
+    const { baseElement, findByText } = render(<ExerciseForm />);
+    const saveButton = await findByText("💾");
 
-    await wait(() => expect(getByText("🤷‍♀️")));
-
+    expect(saveButton).toBeTruthy();
     expect(baseElement).toMatchSnapshot();
   });
 });

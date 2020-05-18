@@ -1,37 +1,36 @@
-import { gql, useLazyQuery } from "@apollo/client";
-import React, { FC, useEffect } from "react";
+import { gql } from "@apollo/client";
+import { useTheme } from "@react-navigation/native";
+import React, { FC } from "react";
+import { ScrollView, StyleSheet } from "react-native";
 
-import { EmptyView } from "../../ui/EmptyView";
+import { Button } from "../../ui/form/Button";
+import { TextField } from "../../ui/form/TextField";
 import { ListExercisesQuery } from "../list/__generated__/ListExercisesQuery";
-import {
-  ShowExerciseQuery,
-  ShowExerciseQueryVariables,
-} from "./__generated__/ShowExerciseQuery";
 
 type Props = { id?: ListExercisesQuery["exercises"][0]["id"] };
 
 export const ExerciseForm: FC<Props> = function ({ id }) {
-  const { data, error, loading } = useExerciseMaybe(id);
+  const {
+    colors: { background: backgroundColor },
+  } = useTheme();
 
-  return <EmptyView />;
+  return (
+    <ScrollView style={[styles.container, { backgroundColor }]}>
+      <TextField
+        marginBottom={styles.nameInput.marginBottom}
+        placeholder="💪 Biceps Curl"
+      />
+      <Button marginBottom={styles.saveButton.marginBottom} text="💾" />
+      {id ? <Button text="🗑" /> : null}
+    </ScrollView>
+  );
 };
 
-const useExerciseMaybe = (id: Props["id"]) => {
-  const [showExercise, result] = useLazyQuery<
-    ShowExerciseQuery,
-    ShowExerciseQueryVariables
-  >(SHOW_EXERCISE_QUERY);
-
-  useEffect(() => {
-    if (!id) {
-      return;
-    }
-
-    showExercise({ variables: { id } });
-  }, [id, showExercise]);
-
-  return result;
-};
+const styles = StyleSheet.create({
+  container: { paddingHorizontal: 20, paddingVertical: 10 },
+  nameInput: { marginBottom: 20 },
+  saveButton: { marginBottom: 10 },
+});
 
 const CREATE_EXERCISE_MUTATION = gql`
   mutation CreateExerciseMutation($exercise: CreateExerciseInput!) {
@@ -50,18 +49,18 @@ const DELETE_EXERCISE_MUTATION = gql`
   }
 `;
 
-const UPDATE_EXERCISE_MUTATION = gql`
-  mutation UpdateExerciseMutation($exercise: UpdateExerciseInput!) {
-    updateExercise(exercise: $exercise) {
+const SHOW_EXERCISE_QUERY = gql`
+  query ShowExerciseQuery($id: ID!) {
+    exercise(id: $id) {
       id
       name
     }
   }
 `;
 
-const SHOW_EXERCISE_QUERY = gql`
-  query ShowExerciseQuery($id: ID!) {
-    exercise(id: $id) {
+const UPDATE_EXERCISE_MUTATION = gql`
+  mutation UpdateExerciseMutation($exercise: UpdateExerciseInput!) {
+    updateExercise(exercise: $exercise) {
       id
       name
     }
