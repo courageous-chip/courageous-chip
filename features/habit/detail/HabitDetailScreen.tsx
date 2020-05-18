@@ -8,3 +8,11 @@ export const HabitDetailScreen: FunctionComponent = function () {
     </View>
   );
 };
+
+export enum HabitDetailStackScreenName {
+  HabitDetail = "HabitDetail",
+}
+
+export type HabitDetailStackScreenParamList = {
+  [HabitDetailStackScreenName.HabitDetail]: { id: string; name: string };
+};
