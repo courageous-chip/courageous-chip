@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { useTheme } from "@react-navigation/native";
+import { useTheme, useNavigation } from "@react-navigation/native";
 import React, { FC } from "react";
 import {
   FlatListProps,
@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import { HabitListItemFields } from "./__generated__/HabitListItemFields";
+import { HabitDetailStackScreenName } from "../detail/HabitDetailScreen";
 
 export const HABIT_LIST_ITEM_FIELDS_FRAGMENT = gql`
   fragment HabitListItemFields on Habit {
@@ -38,14 +39,20 @@ type Props = Pick<HabitListItemFields, "id" | "name"> & {
   onPress: TouchableOpacityProps["onPress"];
 };
 
-export const HabitListItem: FC<Props> = function ({ name, onPress }) {
+export const HabitListItem: FC<Props> = function ({ name, id }) {
   const {
     colors: { card: backgroundColor, text: color },
   } = useTheme();
 
+  const navigation = useNavigation();
+
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={() =>
+        navigation.navigate(HabitDetailStackScreenName.HabitDetail, {
+          id,
+        })
+      }
       style={[styles.itemContainer, { backgroundColor }]}
     >
       <Text style={[styles.itemText, { color }]}>{name}</Text>
