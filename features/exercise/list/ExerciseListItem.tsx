@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { useTheme } from "@react-navigation/native";
+import { useTheme, useNavigation } from "@react-navigation/native";
 import React, { FC } from "react";
 import {
   FlatListProps,
@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 import { ExerciseListItemFields } from "./__generated__/ExerciseListItemFields";
+import { ExerciseDetailStackScreenName } from "../detail/ExerciseDetailScreen";
 
 export const EXERCISE_LIST_ITEM_FIELDS_FRAGMENT = gql`
   fragment ExerciseListItemFields on Exercise {
@@ -40,14 +41,20 @@ type Props = Pick<ExerciseListItemFields, "id" | "name"> & {
   onPress: TouchableOpacityProps["onPress"];
 };
 
-export const ExerciseListItem: FC<Props> = function ({ name, onPress }) {
+export const ExerciseListItem: FC<Props> = function ({ name, id }) {
   const {
     colors: { card: backgroundColor, text: color },
   } = useTheme();
 
+  const navigation = useNavigation();
+
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={() =>
+        navigation.navigate(ExerciseDetailStackScreenName.ExerciseDetail, {
+          id,
+        })
+      }
       style={[styles.itemContainer, { backgroundColor }]}
     >
       <Text style={[styles.itemText, { color }]}>{name}</Text>
