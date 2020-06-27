@@ -53,6 +53,7 @@ export const ExerciseListItem: FC<Props> = function ({ name, id }) {
       onPress={() =>
         navigation.navigate(ExerciseDetailStackScreenName.ExerciseDetail, {
           id,
+          name,
         })
       }
       style={[styles.itemContainer, { backgroundColor }]}

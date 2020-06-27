@@ -27,15 +27,7 @@ export const ExerciseStackScreen: FC = function () {
         name={ExerciseDetailStackScreenName.ExerciseDetail}
         options={{
           headerTitleStyle: styles.headerTitleStyle,
-          title: "Details",
-        }}
-      />
-      <ExerciseStack.Screen
-        component={HabitDetailScreen}
-        name={HabitDetailStackScreenName.HabitDetail}
-        options={{
-          headerTitleStyle: styles.headerTitleStyle,
-          title: "Details",
+          title: "Details 🏋️‍♀️",
         }}
       />
     </ExerciseStack.Navigator>

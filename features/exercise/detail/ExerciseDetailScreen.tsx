@@ -1,10 +1,19 @@
 import React, { FunctionComponent } from "react";
 import { Text, View } from "react-native";
 
-export const ExerciseDetailScreen: FunctionComponent = function () {
+import { HabitListItemFields } from "../../habit/list/__generated__/HabitListItemFields";
+
+interface Props {
+  name: HabitListItemFields["name"];
+  id: HabitListItemFields["id"];
+}
+
+export const ExerciseDetailScreen: FunctionComponent<Props> = function (props) {
+  const { name } = props;
+
   return (
     <View>
-      <Text>Exercise Detail Screen</Text>
+      <Text>{name}</Text>
     </View>
   );
 };
