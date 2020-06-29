@@ -9,8 +9,8 @@ import {
   TouchableOpacityProps,
 } from "react-native";
 
-import { ExerciseListItemFields } from "./__generated__/ExerciseListItemFields";
 import { ExerciseDetailStackScreenName } from "../detail/ExerciseDetailScreen";
+import { ExerciseListItemFields } from "./__generated__/ExerciseListItemFields";
 
 export const EXERCISE_LIST_ITEM_FIELDS_FRAGMENT = gql`
   fragment ExerciseListItemFields on Exercise {
