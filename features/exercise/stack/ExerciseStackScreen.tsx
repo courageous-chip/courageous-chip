@@ -3,11 +3,6 @@ import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
 import {
-  HabitDetailStackScreenParamList,
-  HabitDetailScreen,
-  HabitDetailStackScreenName,
-} from "../../habit/detail/HabitDetailScreen";
-import {
   ExerciseDetailScreen,
   ExerciseDetailStackScreenName,
   ExcerciseDetailStackScreenParamList,
@@ -48,8 +43,7 @@ export enum ExerciseStackScreenName {
 
 export type ExerciseStackParamList = {
   [ExerciseStackScreenName.ExerciseList]: undefined;
-} & ExcerciseDetailStackScreenParamList &
-  HabitDetailStackScreenParamList;
+} & ExcerciseDetailStackScreenParamList;
 
 const ExerciseStack = createStackNavigator<ExerciseStackParamList>();
 

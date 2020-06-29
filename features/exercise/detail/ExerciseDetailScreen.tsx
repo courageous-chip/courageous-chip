@@ -1,20 +1,20 @@
-import { useRoute } from "@react-navigation/native";
+import { useRoute, RouteProp } from "@react-navigation/native";
 import React, { FunctionComponent } from "react";
 import { Text, View } from "react-native";
 
-// interface Props {
-//   name: ExerciseListItemFields["name"];
-//   id: ExerciseListItemFields["id"];
-// }
-
 export const ExerciseDetailScreen: FunctionComponent = function () {
-  const route = useRoute();
+  const route = useRoute<
+    RouteProp<
+      ExcerciseDetailStackScreenParamList,
+      ExerciseDetailStackScreenName
+    >
+  >();
   const { params } = route;
 
   return (
     <View>
-      <Text>{params.id}</Text>
-      <Text>{params.name}</Text>
+      <Text>{params?.id}</Text>
+      <Text>{params?.name}</Text>
     </View>
   );
 };
