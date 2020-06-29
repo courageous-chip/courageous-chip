@@ -15,7 +15,10 @@ export const ExerciseStackScreen: FC = function () {
       <ExerciseStack.Screen
         component={ExerciseListScreen}
         name={ExerciseStackScreenName.ExerciseList}
-        options={{ headerTitleStyle: styles.headerTitleStyle, title: "🏋️‍♀️" }}
+        options={{
+          headerTitleStyle: styles.headerTitleStyle,
+          title: "Exercises 🏋️‍♀️",
+        }}
       />
       <ExerciseStack.Screen
         component={ExerciseDetailScreen}
