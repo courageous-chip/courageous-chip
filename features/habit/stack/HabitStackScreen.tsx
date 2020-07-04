@@ -5,6 +5,7 @@ import { StyleSheet } from "react-native";
 import {
   HabitDetailStackScreenName,
   HabitDetailScreen,
+  HabitDetailStackScreenParamList,
 } from "../detail/HabitDetailScreen";
 import { HabitListScreen } from "../list/HabitListScreen";
 
@@ -42,7 +43,7 @@ export enum HabitStackScreenName {
 
 export type HabitStackParamList = {
   [HabitStackScreenName.HabitList]: undefined;
-};
+} & HabitDetailStackScreenParamList;
 
 const HabitStack = createStackNavigator<HabitStackParamList>();
 
