@@ -17,7 +17,7 @@ export const ExerciseStackScreen: FC = function () {
         name={ExerciseStackScreenName.ExerciseList}
         options={{
           headerTitleStyle: styles.headerTitleStyle,
-          title: "Exercises 🏋️‍♀️",
+          title: "Exercises",
         }}
       />
       <ExerciseStack.Screen
