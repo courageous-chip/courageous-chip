@@ -2,6 +2,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import React, { FC } from "react";
 import { StyleSheet } from "react-native";
 
+import {
+  HabitDetailStackScreenName,
+  HabitDetailScreen,
+  HabitDetailStackScreenParamList,
+} from "../detail/HabitDetailScreen";
 import { HabitListScreen } from "../list/HabitListScreen";
 
 export const HabitStackScreen: FC = function () {
@@ -11,6 +16,14 @@ export const HabitStackScreen: FC = function () {
         component={HabitListScreen}
         name={HabitStackScreenName.HabitList}
         options={{ headerTitleStyle: styles.headerTitleStyle, title: "🗓" }}
+      />
+      <HabitStack.Screen
+        component={HabitDetailScreen}
+        name={HabitDetailStackScreenName.HabitDetail}
+        options={{
+          headerTitleStyle: styles.headerTitleStyle,
+          title: "Details 🗓",
+        }}
       />
     </HabitStack.Navigator>
   );
@@ -30,7 +43,7 @@ export enum HabitStackScreenName {
 
 export type HabitStackParamList = {
   [HabitStackScreenName.HabitList]: undefined;
-};
+} & HabitDetailStackScreenParamList;
 
 const HabitStack = createStackNavigator<HabitStackParamList>();
 
